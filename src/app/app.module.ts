@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ColumnSelectionComponent } from './column-selection/column-selection.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ColumnSelectionComponent
   ],
   imports: [
     BrowserModule,

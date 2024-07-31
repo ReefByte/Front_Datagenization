@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.container {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logo, .datagenization-logo {
+  height: 100px;
+}
+
+.columns-section, .columns-selection {
+  width: 80%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.columns-dataset table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.columns-dataset th, .columns-dataset td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.columns-dataset th {
+  background-color: #f2f2f2;
+}
+
+.selection-wrapper {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.selection-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.selection-column {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.selection-column select {
+  width: 150px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.selection-column button {
+  margin: 0 2px;
+}
+
+.continue-button {
+  margin-top: 20px;
+}
+
+.continue-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.footer{
+  background-color: #003cff;
+}
