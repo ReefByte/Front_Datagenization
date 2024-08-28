@@ -72,6 +72,10 @@
 
 .continue-button {
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50%;
+
 }
 
 .continue-button button {
