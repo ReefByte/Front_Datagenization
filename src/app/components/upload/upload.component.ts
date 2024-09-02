@@ -1,16 +1,15 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  styleUrls: ['./upload.component.css'],
 })
 export class UploadComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
   buttonLabel: string = 'Explorar archivos';
   selectedFileNames: string[] = [];
   selectedFiles: File[] = [];
-
 
   onDrop(event: DragEvent) {
     event.preventDefault();
@@ -41,6 +40,4 @@ export class UploadComponent {
     this.selectedFiles = Array.from(files);
     this.buttonLabel = 'Archivos seleccionados';
   }
-
-
 }
