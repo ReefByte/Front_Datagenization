@@ -123,3 +123,11 @@
   .columns-dataset th {
     background-color: #EFF2F7;
   }
+
+  .p{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    color: #000000; 
+    margin-top: 10px;
+    text-align: left;
+  }

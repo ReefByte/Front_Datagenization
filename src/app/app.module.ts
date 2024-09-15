@@ -7,6 +7,7 @@ import { ColumnSelectionComponent } from './components/column-selection/column-s
 import { UploadComponent } from './components/upload/upload.component';
 import { ColumnComponent } from './components/column/column.component';
 import { CargaComponent } from './components/carga/carga.component';
+import { PrevisualizacionAntesComponent } from './components/previsualizacion-antes/previsualizacion-antes.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,11 @@ import { CargaComponent } from './components/carga/carga.component';
     ColumnSelectionComponent,
     UploadComponent,
     ColumnComponent,
-    CargaComponent
+    CargaComponent,
+    PrevisualizacionAntesComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
