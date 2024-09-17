@@ -8,6 +8,10 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ColumnComponent } from './components/column/column.component';
 import { CargaComponent } from './components/carga/carga.component';
 import { PrevisualizacionAntesComponent } from './components/previsualizacion-antes/previsualizacion-antes.component';
+import { PrevisualizacionDespuesComponent } from './components/previsualizacion-despues/previsualizacion-despues.component';
+import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
+import { RecomendacionesRealizadasComponent } from './components/recomendaciones-realizadas/recomendaciones-realizadas.component';
+import { DescargarDatasetComponent } from './components/descargar-dataset/descargar-dataset.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { PrevisualizacionAntesComponent } from './components/previsualizacion-an
     ColumnComponent,
     CargaComponent,
     PrevisualizacionAntesComponent,
+    PrevisualizacionDespuesComponent,
+    RecomendacionesComponent,
+    RecomendacionesRealizadasComponent,
+    DescargarDatasetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

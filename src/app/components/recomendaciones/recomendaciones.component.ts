@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-previsualizacion-antes',
-  templateUrl: './previsualizacion-antes.component.html',
-  styleUrls: ['./previsualizacion-antes.component.css'],
+  selector: 'app-recomendaciones',
+  templateUrl: './recomendaciones.component.html',
+  styleUrls: ['./recomendaciones.component.css']
 })
-export class PrevisualizacionAntesComponent {
+export class RecomendacionesComponent {
   constructor(private router: Router) {}
 
   navigateToCarga() {
