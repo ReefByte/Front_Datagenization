@@ -36,10 +36,12 @@
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  
 }
 
 .columns-dataset th {
   background-color: #f2f2f2;
+
 }
 
 .selection-wrapper {
@@ -72,6 +74,10 @@
 
 .continue-button {
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50%;
+
 }
 
 .continue-button button {

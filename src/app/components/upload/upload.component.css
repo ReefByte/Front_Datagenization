@@ -1,0 +1,73 @@
+
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 70px;
+  margin-top: 30px;
+}
+
+.img {
+  width: 120px;
+  margin-bottom: 40px;
+}
+.upload-box {
+  flex-direction: center;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  max-width: 300px;
+  width: 100%
+}
+
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 65px;
+  right: 65px;
+  z-index: 1000;
+  font-size: 18px;
+}
+.bottom-right-button:hover {
+  background-color: #2F5F98;
+}
+.container-color{
+  height: 50px;
+  background-color: #2F5F98;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.upload-icon {
+  margin-bottom: 20px;
+}
+
+.explore-button {
+  background-color: #2F5F98;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.explore-button:hover {
+  background-color: #2F5F98;
+}
+

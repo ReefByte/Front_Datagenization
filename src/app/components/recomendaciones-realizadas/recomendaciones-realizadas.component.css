@@ -1,0 +1,83 @@
+.thank-you-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .message-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+  }
+  
+  .octopus-img {
+    width: 150px;
+  }
+  
+  .speech-bubble {
+    position: relative;
+    background: #f1f1f1;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: -50px; /* Adjusts the position of the bubble */
+  }
+  
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: #f1f1f1;
+    border-bottom: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+  
+  .logo-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .logo-img {
+    width: 150px;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .back-btn,
+  .continue-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .back-btn {
+    background-color: #5a6268;
+    color: white;
+  }
+  
+  .continue-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  

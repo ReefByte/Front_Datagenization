@@ -1,0 +1,21 @@
+<div class="upload-container">
+  <div class="image-container">
+    <img src="assets/Logo.png" alt="Logo" class="logo">
+    <img src="assets/upload.png" alt="Upload" class="img">
+
+    <div class="upload-box">
+      <p>Arrastra tus archivos aquí</p>
+      <p>ó</p>
+      <button class="explore-button" (click)="openFileDialog()">
+        {{ buttonLabel }}
+      </button>
+      <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" accept=".csv" multiple>
+      <ul *ngIf="selectedFileNames.length > 0">
+        <li *ngFor="let fileName of selectedFileNames">{{ fileName }}</li>
+      </ul>
+    </div>
+  </div>
+  <button class="bottom-right-button" routerLink="previsualizacion">Procesar</button>
+  <div class="container-color"></div>
+</div>
+
