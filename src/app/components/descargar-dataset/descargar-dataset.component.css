@@ -1,90 +1,123 @@
-.completed-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .header-section {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  h1 {
-    color: #003366;
-    font-size: 28px;
-    margin: 0;
-  }
-  
-  .logo-img {
-    width: 150px;
-  }
-  
-  .download-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .dataset-download {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .dataset-name {
-    font-size: 18px;
-    color: #999;
-    margin-right: 20px;
-  }
-  
-  .download-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .download-icon {
-    width: 20px;
-    margin-left: 10px;
-  }
-  
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .octopus-img {
-    width: 80px;
-  }
-  
-  .home-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .home-icon {
-    width: 40px;
-  }
-  
-  p {
-    font-size: 18px;
-    color: #003366;
-  }
-  
+.container {
+  padding: 20px;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
+h1 {
+  color: #003366;
+  font-size: 28px;
+  margin: 0;
+}
+
+.logo-img {
+  width: 150px;
+}
+
+.logo {
+  width: 150px;
+  margin: 10px 0;
+}
+
+.download-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+  margin-bottom: 150px;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.dataset-download {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.dataset-name {
+  font-size: 18px;
+  color: #999;
+  margin-right: 20px;
+}
+
+.download-btn {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.download-icon {
+  width: 20px;
+  margin-left: 10px;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+}
+
+.octopus-img {
+  width: 50px;
+}
+
+.home-btn {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.home-icon {
+  width: 40px;
+}
+
+p {
+  font-size: 18px;
+  color: #003366;
+}
+
+.container-color {
+  height: 50px;
+  background-color: #2F5F98;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.titulo3{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold; 
+  font-size: 35px; 
+  color: #2F5F98; 
+  margin-top: 10px; 
+}
+
+.titulo2 {
+  height: 20%;
+  width: 20%;
+}

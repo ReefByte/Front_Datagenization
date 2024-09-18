@@ -10,6 +10,6 @@ export class RecomendacionesComponent {
   constructor(private router: Router) {}
 
   navigateToCarga() {
-    this.router.navigate(['/column']);
+    this.router.navigate(['/descargar']);
   }
 }

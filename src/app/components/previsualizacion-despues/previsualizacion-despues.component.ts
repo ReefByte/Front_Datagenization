@@ -11,6 +11,6 @@ export class PrevisualizacionDespuesComponent {
   constructor(private router: Router) {}
 
   navigateToCarga() {
-    this.router.navigate(['/column']);
+    this.router.navigate(['/recomendaciones']);
   }
 }
