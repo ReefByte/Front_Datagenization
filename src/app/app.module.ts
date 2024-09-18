@@ -12,6 +12,7 @@ import { PrevisualizacionDespuesComponent } from './components/previsualizacion-
 import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
 import { RecomendacionesRealizadasComponent } from './components/recomendaciones-realizadas/recomendaciones-realizadas.component';
 import { DescargarDatasetComponent } from './components/descargar-dataset/descargar-dataset.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { DescargarDatasetComponent } from './components/descargar-dataset/descar
     RecomendacionesRealizadasComponent,
     DescargarDatasetComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
