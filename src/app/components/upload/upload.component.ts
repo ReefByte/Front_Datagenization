@@ -20,6 +20,7 @@ export class UploadComponent implements OnInit{
   ngOnInit(): void {
     this.session_id = uuidv4();
     console.log(this.session_id);
+    sessionStorage.setItem('session_id', this.session_id);
   }
 
   onDrop(event: DragEvent) {
@@ -55,7 +56,8 @@ export class UploadComponent implements OnInit{
   procesar(){
     this.uploadService.procesar(this.selectedFiles, this.session_id).subscribe(
       (respuesta: any) => {
-        console.log('Archivo subido con éxito', respuesta);
+        console.log('Archivo subido éxito', respuesta);
+        this.router.navigate(['/previsualizacion']);
       },
       (error: any) => {
         console.error('Error al subir archivo', error);
