@@ -1,54 +1,26 @@
 <div class="container">
-    <div class="header">
-        <p class="titulo3">Previsualización de resultados </p>
-        <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
-
-    </div>
-      <div class="columns-section">
-        <div class="columns-dataset">
-
+  <div class="header">
+      <p class="titulo3">Previsualización de resultados</p>
+      <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
+  </div>
+  <div class="columns-section">
+      <div class="columns-dataset">
           <table>
-            <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Género</th>
-              <th>Edad</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Paula Andrea</td>
-              <td>Javier Felipe</td>
-              <td>William Daniel</td>
-              <td>Juan Felipe</td>
-            </tr>
-            <tr>
-              <td>Peñuela Barrera</td>
-              <td>Santana Diaz</td>
-              <td>Martinez Oviedo</td>
-              <td>Arias Castillo</td>
-            </tr>
-            <tr>
-              <td>F</td>
-              <td>M</td>
-              <td>M</td>
-              <td>M</td>
-            </tr>
-            <tr>
-              <td>21</td>
-              <td>21</td>
-              <td>21</td>
-              <td>22</td>
-            </tr>
-            </tbody>
+              <thead>
+                  <tr>
+                      <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let row of data">
+                      <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+                  </tr>
+              </tbody>
           </table>
-        </div>
       </div>
-      <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
+  </div>
+  <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
   <div class="container-color"></div>
 </div>
-
-
 
   
