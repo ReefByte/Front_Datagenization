@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="columns-grouping-section">
+    <h2>Homogenización de columnas</h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th *ngFor="let fileName of getKeys(columns)">
+          {{ fileName }}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of selectionRows; let rowIndex = index">
+        <td *ngFor="let fileName of getKeys(columns)">
+          <div class="column-select">
+            <div *ngFor="let selection of selectionRows[rowIndex][fileName]; let selectionIndex = index">
+              <select [(ngModel)]="selectionRows[rowIndex][fileName][selectionIndex]">
+                <option value="" disabled selected>Selecciona una columna</option>
+                <option *ngFor="let column of columns[fileName]" [value]="column">{{ column }}</option>
+              </select>
+              <button *ngIf="selectionRows[rowIndex][fileName].length > 1" (click)="removeSelection(rowIndex, fileName, selectionIndex)">-</button>
+            </div>
+            <button (click)="addSelection(rowIndex, fileName)">+</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td [attr.colspan]="getKeys(columns).length">
+          <button (click)="addRow()">Agregar nueva fila</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="continue-button">
+      <button (click)="processGrouping()">Continuar con la agrupación</button>
+    </div>
+  </div>
+</div>

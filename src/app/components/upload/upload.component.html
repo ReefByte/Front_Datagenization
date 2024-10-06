@@ -1,3 +1,15 @@
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <p>Debes seleccionar archivos para poder continuar.</p>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
+</div>
+<div *ngIf="showFormatErrorModal" class="modal">
+  <div class="modal-content">
+    <p>Solo se permiten archivos con formato .csv.</p>
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
+</div>
 <div class="upload-container">
   <div class="image-container">
     <img src="assets/Logo.png" alt="Logo" class="logo">
@@ -11,11 +23,14 @@
       </button>
       <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" accept=".csv" multiple>
       <ul *ngIf="selectedFileNames.length > 0">
-        <li *ngFor="let fileName of selectedFileNames">{{ fileName }}</li>
+        <li *ngFor="let fileName of selectedFileNames; let i = index">
+          {{ fileName }}
+          <button (click)="deleteFile(i)">Eliminar</button>
+        </li>
       </ul>
     </div>
+    <button class="bottom-right-button" (click)="procesar()">Procesar</button>
+    <div class="container-color"></div>
   </div>
-  <button class="bottom-right-button" (click)="procesar()">Procesar</button>
-  <div class="container-color"></div>
 </div>
 

@@ -9,6 +9,7 @@ import {PrevisualizacionDespuesComponent} from './components/previsualizacion-de
 import {RecomendacionesComponent} from './components/recomendaciones/recomendaciones.component';
 import {RecomendacionesRealizadasComponent} from './components/recomendaciones-realizadas/recomendaciones-realizadas.component';
 import {DescargarDatasetComponent} from './components/descargar-dataset/descargar-dataset.component';
+import {ColumnGroupingComponent} from "./components/column-grouping/column-grouping.component";
 
 const routes: Routes = [
   { path: '', component: UploadComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'previsualizacion', component: PrevisualizacionAntesComponent },
   { path: 'carga', component: CargaComponent },
   { path: 'column', component: ColumnComponent },
+  { path: 'grouping', component:ColumnGroupingComponent},
   { path: 'previsualizacion-despues', component:PrevisualizacionDespuesComponent},
   { path: 'recomendaciones', component:RecomendacionesComponent},
   { path: 'recomendaciones-realizadas', component:RecomendacionesRealizadasComponent},

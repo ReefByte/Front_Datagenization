@@ -16,9 +16,12 @@ export class UploadComponent implements OnInit{
   selectedFileNames: string[] = [];
   selectedFiles: File[] = [];
   session_id : string = "";
+  showModal: boolean = false;
+  showFormatErrorModal: boolean = false;
 
   ngOnInit(): void {
     this.session_id = uuidv4();
+    this.uploadService.setSession_id=this.session_id;
     console.log(this.session_id);
   }
 
@@ -42,27 +45,47 @@ export class UploadComponent implements OnInit{
     const input = event.target as HTMLInputElement;
     const files = input.files;
     if (files && files.length > 0) {
-      this.updateFiles(files);
+      this.selectedFileNames.push(...Array.from(files).map(file => file.name));
+      this.selectedFiles.push(...Array.from(files));
+      this.buttonLabel = 'Seleccionar más archivos';
     }
   }
 
   updateFiles(files: FileList) {
+    const validFiles = Array.from(files).filter((file) => file.name.endsWith('.csv'));
+    if (validFiles.length !== files.length) {
+      this.showFormatErrorModal = true;
+    }
     this.selectedFileNames = Array.from(files).map((file) => file.name);
     this.selectedFiles = Array.from(files);
     this.buttonLabel = 'Archivos seleccionados';
   }
 
   procesar(){
-    this.uploadService.procesar(this.selectedFiles, this.session_id).subscribe(
-      (respuesta: any) => {
-        console.log('Archivo subido con éxito', respuesta);
-      },
-      (error: any) => {
-        console.error('Error al subir archivo', error);
-      }
-    );
+
+    if(this.selectedFiles.length == 0){
+      this.showModal = true;
+    }
+    else{
+      this.uploadService.procesar(this.selectedFiles, this.session_id).subscribe(
+        (respuesta: any) => {
+          console.log('Archivo subido con éxito', respuesta);
+          this.router.navigate(['/columns'])
+        },
+        (error: any) => {
+          console.error('Error al subir archivo', error);
+        }
+      );
+    }
   }
-
-
-
+  closeModal() {
+    this.showModal = false;
+  }
+  deleteFile(index: number) {
+    this.selectedFileNames.splice(index, 1);
+    this.selectedFiles.splice(index, 1);
+    if (this.selectedFiles.length === 0) {
+      this.buttonLabel = 'Explorar archivos';
+    }
+  }
 }

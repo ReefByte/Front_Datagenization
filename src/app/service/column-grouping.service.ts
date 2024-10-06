@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ColumnSelectionService {
+export class ColumnGroupingService {
 
   private apiUrl = environment.serverUrl;
 
@@ -16,12 +16,11 @@ export class ColumnSelectionService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getColumns(session_id:string):Observable<any>{
 
     let params = new HttpParams().set('session_id', session_id)
     return this.http.get(`${this.apiUrl}read_csv`, {params})
   }
-
 }

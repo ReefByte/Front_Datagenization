@@ -36,7 +36,7 @@
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
-  
+
 }
 
 .columns-dataset th {
@@ -77,7 +77,6 @@
   display: flex;
   justify-content: space-between;
   gap: 50%;
-
 }
 
 .continue-button button {
