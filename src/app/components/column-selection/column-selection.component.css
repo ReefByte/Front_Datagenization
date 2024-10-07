@@ -4,8 +4,8 @@
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 20px;
+  align-items: center;  
+  height: 97vh; 
 }
 
 .header {
@@ -76,14 +76,53 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  gap: 50%;
+  gap: 900px;
+
 }
 
 .continue-button button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 16px;
 }
 
+
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;  
+  bottom: 65px;
+  right: 65px;
+  z-index: 1002;
+  font-size: 18px;
+}
+
+.bottom-right-button:hover {
+  background-color: #2F5F98;
+}
 .footer{
   background-color: #003cff;
 }
+
+.container-color {
+  height: 5%;
+  background-color: #2F5F98;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: 1002;
+  padding: 10px 0; 
+}
+
+
+.columns-section {
+  flex: 1; 
+  overflow: auto; 
+}
+
+
+
+
