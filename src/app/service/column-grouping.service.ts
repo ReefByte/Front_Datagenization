@@ -23,4 +23,8 @@ export class ColumnGroupingService {
     let params = new HttpParams().set('session_id', session_id)
     return this.http.get(`${this.apiUrl}read_csv`, {params})
   }
+  sendGrouping(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}homogenize`, data, this.httpOptions);
+  }
+
 }

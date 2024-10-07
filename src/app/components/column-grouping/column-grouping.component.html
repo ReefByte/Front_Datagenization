@@ -1,3 +1,9 @@
+<div *ngIf="errorMessage" class="error-modal">
+  <div class="error-content">
+    <p>{{ errorMessage }}</p>
+    <button (click)="closeErrorModal()">Cerrar</button>
+  </div>
+</div>
 <div class="container">
   <div class="header">
     <p class="titulo3">Homogenización de columnas</p>
@@ -28,9 +34,12 @@
             <button (click)="addSelection(rowIndex, fileName)">+</button>
           </div>
         </td>
+        <td>
+          <button class="remove-row-button" (click)="removeRow(rowIndex)">Eliminar fila</button>
+        </td>
       </tr>
       <tr>
-        <td [attr.colspan]="getKeys(columns).length">
+        <td [attr.colspan]="getKeys(columns).length + 1">
           <button (click)="addRow()">Agregar nueva fila</button>
         </td>
       </tr>

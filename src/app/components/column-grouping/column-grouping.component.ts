@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UploadService } from '../../service/upload.service';
 import { ColumnGroupingService } from '../../service/column-grouping.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-column-grouping',
@@ -11,11 +12,16 @@ export class ColumnGroupingComponent {
   selectionRows: Array<{ [key: string]: string[] }> = [];
   session_id: string = '';
   columns: { [key: string]: string[] } = {};
+  errorMessage: string | null = null;
 
   constructor(
     private uploadService: UploadService,
-    private columnGroupingService: ColumnGroupingService
-  ) {}
+    private columnGroupingService: ColumnGroupingService,
+    private router : Router
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.errorMessage = navigation?.extras.state?.['error'] || null;
+  }
 
   ngOnInit(): void {
     this.session_id = this.uploadService.getSession_id;
@@ -53,17 +59,32 @@ export class ColumnGroupingComponent {
 
   addSelection(rowIndex: number, fileName: string): void {
     if (this.selectionRows[rowIndex][fileName]) {
-      this.selectionRows[rowIndex][fileName].push(''); // Añadir una nueva selección vacía
+      this.selectionRows[rowIndex][fileName].push('');
     }
   }
 
   addRow(): void {
-    this.initializeSelectionRow(); // Usa la función para agregar una nueva fila inicializada
+    this.initializeSelectionRow();
+  }
+
+  removeRow(rowIndex: number): void {
+    if (this.selectionRows.length > 1) {
+      this.selectionRows.splice(rowIndex, 1);
+    } else {
+      this.errorMessage = "Debe haber al menos una fila en la tabla de homogenización!"
+    }
   }
 
   processGrouping(): void {
-    console.log('Procesando la agrupación:', this.selectionRows);
-    //TODO: ENVIAR INFO AL BACK
+    const selectedColumnsCount = this.countSelectedColumns();
+    if (selectedColumnsCount < 2) {
+      this.errorMessage = 'Debes seleccionar al menos 2 columnas para continuar.';
+      return;
+    }
+    const requestData = {
+      selections: this.selectionRows,
+    };
+    this.router.navigate(['/carga'], { state: { data: requestData } });
   }
   removeSelection(
     rowIndex: number,
@@ -76,4 +97,28 @@ export class ColumnGroupingComponent {
       console.warn('No puedes eliminar todas las selecciones');
     }
   }
+
+  closeErrorModal() {
+    this.errorMessage = null;
+  }
+
+  countSelectedColumns(): number {
+    let count = 0;
+
+    this.selectionRows.forEach(row => {
+      for (const fileName in row) {
+        row[fileName].forEach(selection => {
+          if (selection && selection.trim() !== '') {
+            count++;
+          }
+        });
+      }
+    });
+
+    return count;
+  }
+
+
 }
+
+
