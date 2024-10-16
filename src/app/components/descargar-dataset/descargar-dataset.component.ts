@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {UploadService} from "../../service/upload.service";
 
 @Component({
   selector: 'app-descargar-dataset',
@@ -7,9 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./descargar-dataset.component.css']
 })
 export class DescargarDatasetComponent {
-  constructor(private router: Router) {}
+  sessionId: string | null = '';
+  constructor(private router: Router,private uploadService: UploadService) {}
 
   navigateToCarga() {
+    this.sessionId = this.uploadService.getSession_id;
     this.router.navigate(['']);
   }
 }

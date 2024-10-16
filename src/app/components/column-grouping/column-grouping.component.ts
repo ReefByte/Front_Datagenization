@@ -25,6 +25,7 @@ export class ColumnGroupingComponent {
 
   ngOnInit(): void {
     this.session_id = this.uploadService.getSession_id;
+    console.log(this.session_id);
     this.getColumns();
   }
 
@@ -81,9 +82,7 @@ export class ColumnGroupingComponent {
       this.errorMessage = 'Debes seleccionar al menos 2 columnas para continuar.';
       return;
     }
-    const requestData = {
-      selections: this.selectionRows,
-    };
+    const requestData = this.buildRequestData();
     this.router.navigate(['/carga'], { state: { data: requestData } });
   }
   removeSelection(
@@ -117,6 +116,25 @@ export class ColumnGroupingComponent {
 
     return count;
   }
+
+  buildRequestData(): any {
+    const requestData: any = {};
+
+    this.selectionRows.forEach((row, index) => {
+      const columnKey = `additionalProp${index + 1}`;
+      requestData[columnKey] = {};
+
+      for (const fileName in row) {
+        const selectedColumns = row[fileName].filter(column => column.trim() !== '');
+        if (selectedColumns.length > 0) {
+          requestData[columnKey][fileName] = selectedColumns;
+        }
+      }
+    });
+
+    return requestData;
+  }
+
 
 
 }

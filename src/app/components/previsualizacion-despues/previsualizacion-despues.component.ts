@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrevisualizacionDespuesService } from '../../service/previsualizacion-despues.service';
+import { UploadService } from '../../service/upload.service';
 
 @Component({
   selector: 'app-previsualizacion-despues',
@@ -8,18 +9,20 @@ import { PrevisualizacionDespuesService } from '../../service/previsualizacion-d
   styleUrls: ['./previsualizacion-despues.component.css'],
 })
 export class PrevisualizacionDespuesComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private PrevisualizacionDespuesService: PrevisualizacionDespuesService
-  ) {}
-  sessionId: string | null = sessionStorage.getItem('sessionId');
+  sessionId: string | null = '';
   data: any[] = [];
 
+  constructor(
+    private router: Router,
+    private previsualizacionDespuesService: PrevisualizacionDespuesService,
+    private uploadService: UploadService
+  ) {}
+
   ngOnInit() {
+    this.sessionId = this.uploadService.getSession_id;
+
     if (this.sessionId != null) {
-      this.PrevisualizacionDespuesService.getCsvColumnsAfter(
-        this.sessionId
-      ).subscribe(
+      this.previsualizacionDespuesService.getCsvColumnsAfter(this.sessionId).subscribe(
         (response) => {
           console.log(response);
           this.data = response;
@@ -30,6 +33,7 @@ export class PrevisualizacionDespuesComponent implements OnInit {
       );
     }
   }
+
   navigateToCarga() {
     this.router.navigate(['/recomendaciones']);
   }

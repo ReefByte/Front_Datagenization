@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'carga', component: CargaComponent },
   { path: 'column', component: ColumnComponent },
   { path: 'grouping', component:ColumnGroupingComponent},
-  { path: 'previsualizacion-despues', component:PrevisualizacionDespuesComponent},
+  { path: 'hresult', component:PrevisualizacionDespuesComponent},
   { path: 'recomendaciones', component:RecomendacionesComponent},
   { path: 'recomendaciones-realizadas', component:RecomendacionesRealizadasComponent},
   { path: 'descargar', component:DescargarDatasetComponent}
