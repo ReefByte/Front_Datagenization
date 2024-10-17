@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {UploadService} from "../../service/upload.service";
 import {ColumnSelectionService} from "../../service/column-selection.service";
 import {Router} from "@angular/router";
 
@@ -11,13 +10,14 @@ import {Router} from "@angular/router";
 })
 export class ColumnSelectionComponent {
 
-  session_id:string="";
+  session_id:string | null = "";
   columns: { [key:string]:string[] }= {};
 
-  constructor(private uploadService:UploadService, private columnSelectionService:ColumnSelectionService, private router: Router) {}
+  constructor(private columnSelectionService:ColumnSelectionService,
+              private router: Router) {}
 
   ngOnInit():void{
-    this.session_id = this.uploadService.getSession_id;
+    this.session_id = sessionStorage.getItem('session_id')
     this.getColumns()
   }
 

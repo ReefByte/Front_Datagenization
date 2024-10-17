@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UploadService} from "../../service/upload.service";
 import {v4 as uuidv4} from 'uuid';
 
@@ -21,7 +21,7 @@ export class UploadComponent implements OnInit{
 
   ngOnInit(): void {
     this.session_id = uuidv4();
-    this.uploadService.setSession_id=this.session_id;
+    sessionStorage.setItem('session_id',this.session_id);
     console.log(this.session_id);
   }
 
@@ -67,7 +67,8 @@ export class UploadComponent implements OnInit{
       this.showModal = true;
     }
     else{
-      this.uploadService.procesar(this.selectedFiles, this.session_id).subscribe(
+      // @ts-ignore
+      this.uploadService.procesar(this.selectedFiles, sessionStorage.getItem('session_id')).subscribe(
         (respuesta: any) => {
           console.log('Archivo subido con éxito', respuesta);
           this.router.navigate(['/columns'])

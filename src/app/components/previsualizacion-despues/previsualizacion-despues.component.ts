@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrevisualizacionDespuesService } from '../../service/previsualizacion-despues.service';
-import { UploadService } from '../../service/upload.service';
 
 @Component({
   selector: 'app-previsualizacion-despues',
@@ -15,11 +14,10 @@ export class PrevisualizacionDespuesComponent implements OnInit {
   constructor(
     private router: Router,
     private previsualizacionDespuesService: PrevisualizacionDespuesService,
-    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
-    this.sessionId = this.uploadService.getSession_id;
+    this.sessionId = sessionStorage.getItem('session_id');
 
     if (this.sessionId != null) {
       this.previsualizacionDespuesService.getCsvColumnsAfter(this.sessionId).subscribe(
