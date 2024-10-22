@@ -7,6 +7,7 @@
 <div class="container">
   <div class="header">
     <p class="titulo3">Homogenización de columnas</p>
+    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
     <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
   </div>
   <div class="columns-grouping-section">
@@ -47,6 +48,13 @@
     </table>
     <div class="continue-button">
       <button  (click)="processGrouping()">Continuar con la agrupación</button>
+    </div>
+  </div>
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalPulpi()">&times;</span>
+      <h2>Explicación</h2>
+      <p>En esta  </p>
     </div>
   </div>
 </div>

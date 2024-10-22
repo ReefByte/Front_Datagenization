@@ -10,7 +10,7 @@ import { PrevisualizacionDespuesService } from '../../service/previsualizacion-d
 export class PrevisualizacionDespuesComponent implements OnInit {
   sessionId: string | null = '';
   data: any[] = [];
-
+  isModalOpen = false;
   constructor(
     private router: Router,
     private previsualizacionDespuesService: PrevisualizacionDespuesService,
@@ -20,19 +20,29 @@ export class PrevisualizacionDespuesComponent implements OnInit {
     this.sessionId = sessionStorage.getItem('session_id');
 
     if (this.sessionId != null) {
-      this.previsualizacionDespuesService.getCsvColumnsAfter(this.sessionId).subscribe(
-        (response) => {
-          console.log(response);
-          this.data = response;
-        },
-        (error) => {
-          console.error('Error fetching CSV columns:', error);
-        }
-      );
+      this.previsualizacionDespuesService
+        .getCsvColumnsAfter(this.sessionId)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.data = response;
+          },
+          (error) => {
+            console.error('Error fetching CSV columns:', error);
+          }
+        );
     }
   }
 
   navigateToCarga() {
     this.router.navigate(['/recomendaciones']);
+  }
+
+  openModalPulpi() {
+    this.isModalOpen = true;
+  }
+
+  closeModalPulpi() {
+    this.isModalOpen = false;
   }
 }

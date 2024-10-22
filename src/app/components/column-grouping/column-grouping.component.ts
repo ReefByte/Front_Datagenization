@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ColumnGroupingService } from '../../service/column-grouping.service';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-column-grouping',
@@ -12,10 +12,11 @@ export class ColumnGroupingComponent {
   session_id: string|null = '';
   columns: { [key: string]: string[] } = {};
   errorMessage: string | null = null;
+  isModalOpen = false;
 
   constructor(
     private columnGroupingService: ColumnGroupingService,
-    private router : Router
+    private router: Router
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.errorMessage = navigation?.extras.state?.['error'] || null;
@@ -44,6 +45,8 @@ export class ColumnGroupingComponent {
     }
   }
 
+  getRecomendations() {}
+
   initializeSelectionRow() {
     const newRow: { [key: string]: string[] } = {};
     for (const fileName of this.getKeys(this.columns)) {
@@ -70,14 +73,16 @@ export class ColumnGroupingComponent {
     if (this.selectionRows.length > 1) {
       this.selectionRows.splice(rowIndex, 1);
     } else {
-      this.errorMessage = "Debe haber al menos una fila en la tabla de homogenización!"
+      this.errorMessage =
+        'Debe haber al menos una fila en la tabla de homogenización!';
     }
   }
 
   processGrouping(): void {
     const selectedColumnsCount = this.countSelectedColumns();
     if (selectedColumnsCount < 2) {
-      this.errorMessage = 'Debes seleccionar al menos 2 columnas para continuar.';
+      this.errorMessage =
+        'Debes seleccionar al menos 2 columnas para continuar.';
       return;
     }
     const requestData = this.buildRequestData();
@@ -102,9 +107,9 @@ export class ColumnGroupingComponent {
   countSelectedColumns(): number {
     let count = 0;
 
-    this.selectionRows.forEach(row => {
+    this.selectionRows.forEach((row) => {
       for (const fileName in row) {
-        row[fileName].forEach(selection => {
+        row[fileName].forEach((selection) => {
           if (selection && selection.trim() !== '') {
             count++;
           }
@@ -123,7 +128,9 @@ export class ColumnGroupingComponent {
       requestData[columnKey] = {};
 
       for (const fileName in row) {
-        const selectedColumns = row[fileName].filter(column => column.trim() !== '');
+        const selectedColumns = row[fileName].filter(
+          (column) => column.trim() !== ''
+        );
         if (selectedColumns.length > 0) {
           requestData[columnKey][fileName] = selectedColumns;
         }
@@ -133,8 +140,11 @@ export class ColumnGroupingComponent {
     return requestData;
   }
 
+  openModalPulpi() {
+    this.isModalOpen = true;
+  }
 
-
+  closeModalPulpi() {
+    this.isModalOpen = false;
+  }
 }
-
-
