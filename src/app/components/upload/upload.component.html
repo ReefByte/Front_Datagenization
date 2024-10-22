@@ -12,7 +12,10 @@
 </div>
 <div class="upload-container">
   <div class="image-container">
-    <img src="assets/Logo.png" alt="Logo" class="logo">
+    <div class="header">
+      <img src="assets/Logo.png" alt="Logo" class="logo">
+      <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+    </div>
     <img src="assets/upload.png" alt="Upload" class="img">
 
     <div class="upload-box">
@@ -30,6 +33,13 @@
       </ul>
     </div>
     <button class="bottom-right-button" (click)="procesar()">Procesar</button>
+  </div>
+</div>
+<div *ngIf="isModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModalPulpi()">&times;</span>
+    <h2>Explicación</h2>
+    <p>En esta pantalla se van a subir los datasets que se desean homogenizar </p>
   </div>
 </div>
 <div class="container-color"></div>

@@ -11,7 +11,7 @@
     <div class="left-section">
       <h2>Recomendaciones</h2>
       <p>Te quiero realizar algunas recomendaciones para tus datos.</p>
-      <img src="assets/pulpo.jpg" alt="Pulpo" class="logo">
+      <img src="assets/pulpo.jpg" alt="Pulpo" class="logo" (click)="openModalPulpi()">
       <p>Puedes aceptar, ignorar o simplemente continuar al siguiente paso</p>
     </div>
 
@@ -38,7 +38,13 @@
       </div>
     </div>
   </div>
-
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalPulpi()">&times;</span>
+      <h2>Explicación</h2>
+      <p>En esta pantalla se van a mostrar </p>
+    </div>
+  </div>
   <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
   <div class="container-color"></div>
 </div>

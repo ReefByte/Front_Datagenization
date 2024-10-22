@@ -1,8 +1,10 @@
 <div class="container">
   <div class="header">
-    <p class="titulo3">Previsualización de resultados</p>
-    <img src="assets/Titulo2.png" alt="Titulo" class="titulo2" />
+   
+    <img src="assets/Titulo-datagenization.png" alt="Titulo" class="titulo2" />
+    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
   </div>
+  <p class="titulo3">Previsualización de resultados</p>
   <div class="columns-section">
     <div class="columns-dataset">
       <table>
@@ -17,6 +19,13 @@
         </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalPulpi()">&times;</span>
+      <h2>Explicación</h2>
+      <p>En esta pantalla se va a mostrar con que columnas queda el dataset resultado con ejemplos en cada una.</p>
     </div>
   </div>
   <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
