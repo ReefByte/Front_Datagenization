@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ColumnGroupingService } from "../../service/column-grouping.service";
-import { UploadService } from "../../service/upload.service";
 
 @Component({
   selector: 'app-carga',
@@ -10,20 +9,19 @@ import { UploadService } from "../../service/upload.service";
 })
 export class CargaComponent {
 
-  session_id: string = '';
+  session_id: string|null = '';
   jsonData: any;
 
   constructor(
-    private uploadService: UploadService,
     private router: Router,
     private columnGroupingService: ColumnGroupingService
   ) {
     const navigation = this.router.getCurrentNavigation();
-    this.jsonData = navigation?.extras.state?.['data'] || {};  // Obtén los datos pasados por la navegación
+    this.jsonData = navigation?.extras.state?.['data'] || {};
   }
 
   ngOnInit() {
-    this.session_id = this.uploadService.getSession_id;
+    this.session_id = sessionStorage.getItem('session_id');
 
     if (!this.session_id) {
       console.error('No se pudo obtener el session_id.');

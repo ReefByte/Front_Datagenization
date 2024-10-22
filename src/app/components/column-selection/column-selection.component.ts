@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+
 import { UploadService } from '../../service/upload.service';
 import { ColumnSelectionService } from '../../service/column-selection.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-column-selection',
@@ -13,15 +15,21 @@ export class ColumnSelectionComponent {
   isModalOpen = false;
   columns: { [key: string]: string[] } = {};
 
+
   constructor(
     private uploadService: UploadService,
     private columnSelectionService: ColumnSelectionService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.session_id = this.uploadService.getSession_id;
-    this.getColumns();
+  session_id:string | null = "";
+  columns: { [key:string]:string[] }= {};
+
+
+
+  ngOnInit():void{
+    this.session_id = sessionStorage.getItem('session_id')
+    this.getColumns()
   }
 
   getColumns() {

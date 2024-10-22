@@ -1,7 +1,9 @@
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UploadService } from '../../service/upload.service';
 import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-upload',
@@ -21,7 +23,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.session_id = uuidv4();
-    this.uploadService.setSession_id = this.session_id;
+    sessionStorage.setItem('session_id',this.session_id);
     console.log(this.session_id);
   }
 
@@ -68,18 +70,17 @@ export class UploadComponent implements OnInit {
   procesar() {
     if (this.selectedFiles.length == 0) {
       this.showModal = true;
-    } else {
-      this.uploadService
-        .procesar(this.selectedFiles, this.session_id)
-        .subscribe(
-          (respuesta: any) => {
-            console.log('Archivo subido con éxito', respuesta);
-            this.router.navigate(['/columns']);
-          },
-          (error: any) => {
-            console.error('Error al subir archivo', error);
-          }
-        );
+
+    }
+    else{
+      this.uploadService.procesar(this.selectedFiles, sessionStorage.getItem('session_id')).subscribe(
+        (respuesta: any) => {
+          console.log('Archivo subido con éxito', respuesta);
+          this.router.navigate(['/columns'])
+        },
+        (error: any) => {
+          console.error('Error al subir archivo', error);
+        }
     }
   }
   closeModal() {

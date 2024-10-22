@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UploadService } from '../../service/upload.service';
 import { ColumnGroupingService } from '../../service/column-grouping.service';
 import { Router } from '@angular/router';
 
@@ -10,13 +9,12 @@ import { Router } from '@angular/router';
 })
 export class ColumnGroupingComponent {
   selectionRows: Array<{ [key: string]: string[] }> = [];
-  session_id: string = '';
+  session_id: string|null = '';
   columns: { [key: string]: string[] } = {};
   errorMessage: string | null = null;
   isModalOpen = false;
 
   constructor(
-    private uploadService: UploadService,
     private columnGroupingService: ColumnGroupingService,
     private router: Router
   ) {
@@ -25,7 +23,7 @@ export class ColumnGroupingComponent {
   }
 
   ngOnInit(): void {
-    this.session_id = this.uploadService.getSession_id;
+    this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id);
     this.getColumns();
   }
