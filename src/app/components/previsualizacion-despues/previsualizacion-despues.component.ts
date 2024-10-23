@@ -13,7 +13,7 @@ export class PrevisualizacionDespuesComponent implements OnInit {
   isModalOpen = false;
   constructor(
     private router: Router,
-    private previsualizacionDespuesService: PrevisualizacionDespuesService,
+    private previsualizacionDespuesService: PrevisualizacionDespuesService
   ) {}
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class PrevisualizacionDespuesComponent implements OnInit {
   }
 
   navigateToCarga() {
-    this.router.navigate(['/recomendaciones']);
+    this.router.navigate(['/descargar']);
   }
 
   openModalPulpi() {
