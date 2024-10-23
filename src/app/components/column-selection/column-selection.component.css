@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;  
-  height: 97vh; 
+  height: 97vh;
+  overflow: hidden; 
 }
 
 .header {
@@ -26,24 +27,65 @@
   text-align: center;
 }
 
-.columns-dataset table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 auto;
+.columns-dataset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden; 
 }
 
-.columns-dataset th, .columns-dataset td {
+.columns-dataset h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/*.columns-dataset th, .columns-dataset td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 
 }
 
+.columns-dataset tbody tr td {
+  min-width: 150px; 
+}
+
 .columns-dataset th {
   background-color: #f2f2f2;
 
 }
+*/
 
+.dynamic-table th, .dynamic-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  max-width: 150px; /* Ancho máximo ajustado */
+  word-wrap: break-word; /* Permite saltos de línea */
+  white-space: normal; /* Permite que el texto haga saltos de línea */
+}
+
+.dynamic-table {
+  width: auto;
+  max-width: 100%;
+  overflow-x: auto; 
+  margin-top: 20px;
+  border-collapse: collapse;
+  table-layout: auto; 
+}
+
+.dynamic-table th {
+  background-color: #f2f2f2;
+  text-overflow: ellipsis;
+}
+
+.dynamic-table th span {
+  display: inline-block;
+  max-width: 100%;
+  word-wrap: break-word;
+}
 .selection-wrapper {
   border: 1px solid #ddd;
   padding: 20px;
@@ -60,6 +102,7 @@
   display: flex;
   align-items: center;
   margin: 0 10px;
+
 }
 
 .selection-column select {
@@ -149,5 +192,4 @@
   font-size: 28px;
   font-weight: bold;
 }
-
 
