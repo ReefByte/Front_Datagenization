@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { UploadService } from '../../service/upload.service';
 import { ColumnSelectionService } from '../../service/column-selection.service';
 import { Router } from '@angular/router';
 
@@ -11,20 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./column-selection.component.css'],
 })
 export class ColumnSelectionComponent {
-  session_id: string = '';
+  session_id: string | null = '';
   isModalOpen = false;
   columns: { [key: string]: string[] } = {};
 
 
   constructor(
-    private uploadService: UploadService,
     private columnSelectionService: ColumnSelectionService,
     private router: Router
   ) {}
-
-  session_id:string | null = "";
-  columns: { [key:string]:string[] }= {};
-
 
 
   ngOnInit():void{
@@ -81,7 +75,7 @@ export class ColumnSelectionComponent {
     }
     return Array(maxRows)
       .fill(0)
-      .map((x, i) => i); // Crear un array [0, 1, 2, ..., maxRows-1]
+      .map((x, i) => i);
   }
 
   routing() {

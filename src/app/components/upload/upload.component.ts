@@ -16,7 +16,7 @@ export class UploadComponent implements OnInit {
   buttonLabel: string = 'Explorar archivos';
   selectedFileNames: string[] = [];
   selectedFiles: File[] = [];
-  session_id: string = '';
+  session_id: string|null = '';
   showModal: boolean = false;
   showFormatErrorModal: boolean = false;
   isModalOpen = false;
@@ -73,6 +73,7 @@ export class UploadComponent implements OnInit {
 
     }
     else{
+      // @ts-ignore
       this.uploadService.procesar(this.selectedFiles, sessionStorage.getItem('session_id')).subscribe(
         (respuesta: any) => {
           console.log('Archivo subido con éxito', respuesta);
@@ -80,7 +81,7 @@ export class UploadComponent implements OnInit {
         },
         (error: any) => {
           console.error('Error al subir archivo', error);
-        }
+        })
     }
   }
   closeModal() {
