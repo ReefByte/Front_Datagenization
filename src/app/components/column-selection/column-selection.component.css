@@ -62,9 +62,9 @@
   padding: 8px 12px;
   text-align: left;
   border: 1px solid #ddd;
-  max-width: 150px; /* Ancho máximo ajustado */
-  word-wrap: break-word; /* Permite saltos de línea */
-  white-space: normal; /* Permite que el texto haga saltos de línea */
+  max-width: 150px; 
+  word-wrap: break-word; 
+  white-space: normal; 
 }
 
 .dynamic-table {
