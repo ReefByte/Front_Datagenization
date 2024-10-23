@@ -23,6 +23,7 @@ export class ColumnSelectionComponent {
 
   ngOnInit():void{
     this.session_id = sessionStorage.getItem('session_id')
+    console.log(this.session_id)
     this.getColumns()
   }
 

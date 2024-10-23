@@ -16,7 +16,7 @@ export class UploadComponent implements OnInit {
   buttonLabel: string = 'Explorar archivos';
   selectedFileNames: string[] = [];
   selectedFiles: File[] = [];
-  session_id: string|null = '';
+  session_id: string = '';
   showModal: boolean = false;
   showFormatErrorModal: boolean = false;
   isModalOpen = false;
@@ -27,44 +27,18 @@ export class UploadComponent implements OnInit {
     console.log(this.session_id);
   }
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    const files = event.dataTransfer?.files;
-    if (files && files.length > 0) {
-      this.updateFiles(files);
-    }
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-  }
-
   openFileDialog() {
     this.fileInput.nativeElement.click();
   }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    const files = input.files;
+    const files = input.files
     if (files && files.length > 0) {
-      this.selectedFileNames.push(
-        ...Array.from(files).map((file) => file.name)
-      );
+      this.selectedFileNames.push(...Array.from(files).map(file => file.name));
       this.selectedFiles.push(...Array.from(files));
       this.buttonLabel = 'Seleccionar más archivos';
     }
-  }
-
-  updateFiles(files: FileList) {
-    const validFiles = Array.from(files).filter((file) =>
-      file.name.endsWith('.csv')
-    );
-    if (validFiles.length !== files.length) {
-      this.showFormatErrorModal = true;
-    }
-    this.selectedFileNames = Array.from(files).map((file) => file.name);
-    this.selectedFiles = Array.from(files);
-    this.buttonLabel = 'Archivos seleccionados';
   }
 
   procesar() {
@@ -87,6 +61,7 @@ export class UploadComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
+
   deleteFile(index: number) {
     this.selectedFileNames.splice(index, 1);
     this.selectedFiles.splice(index, 1);
