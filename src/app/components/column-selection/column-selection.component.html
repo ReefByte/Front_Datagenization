@@ -25,13 +25,17 @@
     </div>
   </div>
 
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
+  
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
       <h2 style="color: #979BC4;">¡Hola, soy pulpi!</h2>
       <p>En esta pantalla se van a mostrar las columnas que contienen cada uno de los datasets subidos y en la siguiente se les va a dar la opción de buscar que columnas quieren homogenizar entre ellas. </p>
+      <div class="speech-arrow"></div> 
     </div>
   </div>
+
 
   <div class="continue-button">
     <button class="bottom-right-button" routerLink="">Atras</button>
