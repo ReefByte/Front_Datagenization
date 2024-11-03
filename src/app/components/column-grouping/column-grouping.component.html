@@ -35,6 +35,13 @@
             <button (click)="addSelection(rowIndex, fileName)">+</button>
           </div>
         </td>
+        <td [attr.colspan]="getKeys(columns).length">
+          <input
+            [(ngModel)]="row.columnName"
+            placeholder="Nombre de la columna homogenizada"
+            class="column-name-input"
+          />
+        </td>
         <td>
           <button class="remove-row-button" (click)="removeRow(rowIndex)">Eliminar fila</button>
         </td>

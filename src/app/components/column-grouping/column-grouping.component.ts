@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./column-grouping.component.css'],
 })
 export class ColumnGroupingComponent {
-  selectionRows: Array<{ [key: string]: string[] }> = [];
+  selectionRows: Array<{ [key: string]: any; columnName: string }> = [];
   session_id: string|null = '';
   columns: { [key: string]: string[] } = {};
   errorMessage: string | null = null;
@@ -45,10 +45,11 @@ export class ColumnGroupingComponent {
     }
   }
 
-  getRecomendations() {}
 
   initializeSelectionRow() {
-    const newRow: { [key: string]: string[] } = {};
+    const newRow: { [key: string]: any; columnName: string } = {
+      columnName: '',
+    };
     for (const fileName of this.getKeys(this.columns)) {
       newRow[fileName] = [''];
     }
@@ -79,15 +80,35 @@ export class ColumnGroupingComponent {
   }
 
   processGrouping(): void {
-    const selectedColumnsCount = this.countSelectedColumns();
-    if (selectedColumnsCount < 2) {
-      this.errorMessage =
-        'Debes seleccionar al menos 2 columnas para continuar.';
+    const requestData = this.buildRequestData();
+
+    this.router.navigate(['/carga'], { state: { data: requestData } });
+
+    if (!requestData || Object.keys(requestData).length === 0) {
+      this.errorMessage = 'Datos incompletos para procesar agrupación.';
       return;
     }
-    const requestData = this.buildRequestData();
-    this.router.navigate(['/carga'], { state: { data: requestData } });
+
+    this.columnGroupingService.sendGrouping(requestData, this.session_id || '').subscribe(
+      (response) => {
+        if (response.status === 200) {
+          console.log('Agrupación enviada exitosamente. Redirigiendo a previsualización...');
+          this.router.navigate(['/hresult']);
+        } else {
+          this.errorMessage = 'Error en el servidor. Intenta de nuevo.';
+          this.router.navigate(['/grouping'], { state: { error: this.errorMessage } });
+        }
+      },
+      (error) => {
+        // Manejo de error y redirección a column-grouping con mensaje de error
+        this.errorMessage = error.status === 422 ? 'La estructura de los datos es incorrecta. ' +
+          'Por favor, revisa la selección de columnas.' : 'Ocurrió un error en el servidor, intenta de nuevo.';
+        this.router.navigate(['/grouping'], { state: { error: this.errorMessage } });
+      }
+    );
   }
+
+
   removeSelection(
     rowIndex: number,
     fileName: string,
@@ -106,14 +127,17 @@ export class ColumnGroupingComponent {
 
   countSelectedColumns(): number {
     let count = 0;
-
     this.selectionRows.forEach((row) => {
       for (const fileName in row) {
-        row[fileName].forEach((selection) => {
-          if (selection && selection.trim() !== '') {
-            count++;
-          }
-        });
+        if (Array.isArray(row[fileName])) {
+          row[fileName].forEach((selection: string) => {
+            if (selection && selection.trim() !== '') {
+              count++;
+            }
+          });
+        } else {
+          console.warn(`row[${fileName}] no es un array. Valor actual:`, row[fileName]);
+        }
       }
     });
 
@@ -123,22 +147,28 @@ export class ColumnGroupingComponent {
   buildRequestData(): any {
     const requestData: any = {};
 
-    this.selectionRows.forEach((row, index) => {
-      const columnKey = `additionalProp${index + 1}`;
+    console.log("selectionRows al iniciar buildRequestData:", this.selectionRows);
+
+    this.selectionRows.forEach((row) => {
+      const columnKey = row.columnName || 'default';
       requestData[columnKey] = {};
 
       for (const fileName in row) {
-        const selectedColumns = row[fileName].filter(
-          (column) => column.trim() !== ''
-        );
-        if (selectedColumns.length > 0) {
-          requestData[columnKey][fileName] = selectedColumns;
+        if (fileName !== 'columnName' && Array.isArray(row[fileName])) {
+          const selectedColumns = row[fileName].filter(
+            (column: string) => column.trim() !== ''
+          );
+          if (selectedColumns.length > 0) {
+            requestData[columnKey][fileName] = selectedColumns;
+          }
         }
       }
     });
 
+    console.log('JSON construido en buildRequestData:', JSON.stringify(requestData, null, 2));
     return requestData;
   }
+
 
   openModalPulpi() {
     this.isModalOpen = true;
