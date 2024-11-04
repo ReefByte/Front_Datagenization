@@ -1,167 +1,145 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 
-.image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    width: 300px;
-    margin-bottom: 70px;
-    margin-top: 15px;
-  }
-  
-  .img {
-    width: 120px;
-    margin-bottom: 40px;
-  }
-  .upload-box {
-    flex-direction: center;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    background-color: #fff;
-    max-width: 300px;
-    width: 100%
-  }
-  
-  .bottom-right-button {
-    background-color: #2F5F98;
-    color: white;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 65px;
-    right: 65px;
-    z-index: 1000;
-    font-size: 18px;
-  }
-  .bottom-right-button:hover {
-    background-color: #2F5F98;
-  }
-  .container-color{
-    height: 50px;
-    background-color: #2F5F98;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-  
-  .upload-icon {
-    margin-bottom: 20px;
-  }
-  
-  .explore-button {
-    background-color: #2F5F98;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .explore-button:hover {
-    background-color: #2F5F98;
-  }
-  
-  .titulo3{
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold; 
-    font-size: 35px; 
-    color: #2F5F98; 
-    margin-top: 10px; 
-  }
+.container {
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  height: 97vh;
+  overflow: hidden; 
+}
 
-  .titulo-Tabla{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 18px;
-    color: #000000; 
-    margin-top: 10px;
-    text-align: left;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.pulpi {
+  width: 150px;
+}
 
-  }
-  
-  .titulo2 {
-    height: 20%;
-    width: 20%;
-  }
+.titulo2 {
+  height: 50%;
+  width: 22%;
+}
 
-  .columns-section, .columns-selection {
-    width: 80%;
-    margin: 20px 0;
-    text-align: center;
-  }
-  
-  .columns-dataset table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto;
-  }
-  
-  .columns-dataset th, .columns-dataset td {
-    font-family: 'Ubuntu', sans-serif;
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.titulo3 {
+  font-weight: bold; 
+  font-size: 35px; 
+  color: #2F5F98; 
+  margin-top: 5px; 
+}
+.columns-section {
+  width: 80%;
+  margin: 20px 0;
+  overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+.dynamic-table {
+  width: auto; /* Ajusta automáticamente el ancho según el contenido */
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
 
-  }
-  
-  .columns-dataset th {
-    background-color: #EFF2F7;
-  }
+.columns-dataset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden; 
+}
 
-  .p{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
-    color: #000000; 
-    margin-bottom:20px;
-    text-align: left;
-  }
+.dynamic-table th, .dynamic-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  max-width: 150px;
+  word-wrap: break-word;
+  white-space: normal;
+}
 
-  .modal {
-    display: block; /* Mostrado por defecto, se controla con Angular */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
-  }
-  
-  .modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .pulpi {
-    width: 150px;
+.dynamic-table th {
+  background-color: #f2f2f2;
+  text-overflow: ellipsis;
+}
 
-  }
-  
-  
+.container-color {
+  height: 50px;
+  background-color: #2F5F98;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 65px;
+  right: 65px;
+  font-size: 18px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); 
+  z-index: 900;
+}
+
+
+.modal {
+  position: absolute;
+  top: 135px; 
+  left: 80%; 
+  width: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+
+.modal-content {
+  padding: 20px;
+  color: #333;
+  position: relative;
+  border-radius: 10px;
+}
+
+.speech-arrow {
+  position: absolute;
+  top: -8px; 
+  left: 80%;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #fff; 
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #333;
+}
