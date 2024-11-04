@@ -100,7 +100,6 @@ export class ColumnGroupingComponent {
         }
       },
       (error) => {
-        // Manejo de error y redirección a column-grouping con mensaje de error
         this.errorMessage = error.status === 422 ? 'La estructura de los datos es incorrecta. ' +
           'Por favor, revisa la selección de columnas.' : 'Ocurrió un error en el servidor, intenta de nuevo.';
         this.router.navigate(['/grouping'], { state: { error: this.errorMessage } });

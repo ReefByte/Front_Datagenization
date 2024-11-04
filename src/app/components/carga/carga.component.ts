@@ -50,7 +50,7 @@ export class CargaComponent {
           this.router.navigate(['/hresult']);
         } else {
           console.warn('El servidor respondió, pero no con un estado exitoso. Estado:', response.status);
-          this.router.navigate(['/column-grouping'], {
+          this.router.navigate(['/grouping'], {
             state: { error: 'El servidor respondió con un error. Intenta de nuevo.' }
           });
         }
@@ -60,7 +60,7 @@ export class CargaComponent {
         const errorMsg = error.status === 422 ? 'La estructura de los datos ' +
           'es incorrecta. Por favor, revisa la selección de columnas.' :
           'Error en el servidor. Intenta de nuevo.';
-        this.router.navigate(['/column-grouping'], { state: { error: errorMsg } });
+        this.router.navigate(['/grouping'], { state: { error: errorMsg } });
       }
     });
   }
