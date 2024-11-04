@@ -35,12 +35,17 @@
     <button class="bottom-right-button" (click)="procesar()">Procesar</button>
   </div>
 </div>
-<div *ngIf="isModalOpen" class="modal">
-  <div class="modal-content">
+
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
+
+<div *ngIf="isModalOpen" class="modal-pulpi">
+  <div class="modal-content-pulpi">
     <span class="close" (click)="closeModalPulpi()">&times;</span>
     <h2 style="color: #979BC4;">¡Hola, soy pulpi!</h2>
     <p> Me vas a poder ver en las distintas pantallas y voy a ser una guía para la funcionalidad de cada pantalla.</p>
     <p> En esta pantalla se van a subir los datasets que se desean homogenizar </p>
+    <div class="speech-arrow"></div> 
   </div>
 </div>
+
 <div class="container-color"></div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recomendaciones-realizadas',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./recomendaciones-realizadas.component.css']
 })
 export class RecomendacionesRealizadasComponent {
+  constructor(
+    private router: Router
+  ) {}
+  routing() {
+    this.router.navigate(['/descargar']);
+  }
+
 
 }

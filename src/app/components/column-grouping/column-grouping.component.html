@@ -57,12 +57,14 @@
       <button  (click)="processGrouping()">Continuar con la agrupación</button>
     </div>
   </div>
-  <div *ngIf="isModalOpen" class="modal">
-    <div class="modal-content">
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
+
+  <div *ngIf="isModalOpen" class="modal-pulpi">
+    <div class="modal-content-pulpi">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
-      <h2>Recomendaciones</h2>
-      <p *ngIf="recommendationsData">{{ recommendationsData }}</p>
-      <p *ngIf="!recommendationsData">Cargando recomendaciones...</p>
+      <h2 style="color: #979BC4;">¡Hola,soy pupli!</h2>
+        <p>En esta pantalla te vamos a presentar algunas recomendaciones de columnas para homogenizar, si quieres aceptar las recomendaciones da click en aceptar y serán agregadas  </p>
+      <div class="speech-arrow"></div>
     </div>
   </div>
 </div>
