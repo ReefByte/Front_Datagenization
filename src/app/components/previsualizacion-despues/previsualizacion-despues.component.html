@@ -7,20 +7,20 @@
   <p class="titulo3">Previsualización de resultados</p>
   <div class="columns-section">
     <div class="columns-dataset">
-      <table>
+      <table class="dynamic-table">
         <thead>
-        <tr>
-          <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
-        </tr>
+          <tr>
+            <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let row of data">
-          <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
-        </tr>
+          <tr *ngFor="let row of data">
+            <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </div>  
 
   <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
   
