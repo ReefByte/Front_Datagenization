@@ -1,31 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 .image-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
 }
-
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  padding: 0;
 }
 
 .logo {
   width: 300px;
   margin-bottom: 70px;
   margin-top: 30px;
-  position: absolute;
-  right: 0;
 }
 
 .pulpi {
   width: 150px;
   margin-bottom: 70px;
-  margin-top: 30px;
+  cursor: pointer; 
 }
 
 .img {
@@ -44,6 +43,7 @@
   background-color: #fff;
   max-width: 100%;
   width: auto;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .bottom-right-button {
@@ -174,8 +174,8 @@ li button:hover {
 
 .modal-pulpi {
   position: absolute;
-  top: 155px; 
-  left: 80%; 
+  top: 160px; 
+  left: 0%; 
   width: 250px;
   background-color: #fff;
   border-radius: 10px;
@@ -194,7 +194,7 @@ li button:hover {
 .speech-arrow {
   position: absolute;
   top: -8px; 
-  left: 80%;
+  left: 30%;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -213,4 +213,8 @@ li button:hover {
 
 .close:hover {
   color: #333;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif; 
 }

@@ -6,9 +6,8 @@
 </div>
 <div class="container">
   <div class="header">
-    <p class="titulo3">Homogenización de columnas</p>
     <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
-    <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
+    <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
   <div class="columns-grouping-section">
     <h2>Escoge las columnas o pares de columnas a homogenizar:</h2>
@@ -41,7 +40,7 @@
       </tr>
       <tr>
         <td [attr.colspan]="getKeys(columns).length + 1">
-          <button (click)="addRow()">Agregar nueva fila</button>
+          <button (click)="addRow()" class="agregar">Agregar nueva fila</button>
         </td>
       </tr>
       </tbody>
