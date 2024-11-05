@@ -22,9 +22,9 @@ export class ColumnGroupingService {
     return this.http.get(`${this.apiUrl}read_csv`, { params });
   }
 
-  getRecomendations(session_id: string): Observable<any> {
+  getRecommendations(session_id: string): Observable<any> {
     let params = new HttpParams().set('session_id', session_id);
-    return this.http.get(`${this.apiUrl}read_csv`, { params });
+    return this.http.get(`${this.apiUrl}recommendations`, { params });
   }
   sendGrouping(data: any, session_id: string): Observable<any> {
     if (!session_id) {

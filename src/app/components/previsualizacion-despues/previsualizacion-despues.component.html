@@ -1,5 +1,6 @@
 <div class="container">
   <div class="header">
+    <img src="assets/Titulo-datagenization.png" alt="Titulo" class="titulo2" />
     <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
     <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
@@ -19,19 +20,19 @@
         </tbody>
       </table>
     </div>
-  </div>  
+  </div>
 
   <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
-  
+
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
       <h2 class="modal-title" style="color: #979BC4;" >¡Hola, soy pulpi!</h2>
       <p>En esta pantalla se va a mostrar con qué columnas queda el dataset resultado con ejemplos en cada una.</p>
-      <div class="speech-arrow"></div> 
+      <div class="speech-arrow"></div>
     </div>
   </div>
-  
+
   <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
-  <div class="container-color"></div>
 </div>
+<div class="container-color"></div>

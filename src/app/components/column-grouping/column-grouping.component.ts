@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./column-grouping.component.css'],
 })
 export class ColumnGroupingComponent {
-  selectionRows: Array<{ [key: string]: string[] }> = [];
+  selectionRows: Array<{ [key: string]: any; columnName: string }> = [];
   session_id: string|null = '';
   columns: { [key: string]: string[] } = {};
   errorMessage: string | null = null;
   isModalOpen = false;
+  recommendationsData: any = null;
+  acceptedRecommendations: { [key: string]: boolean } = {};
 
   constructor(
     private columnGroupingService: ColumnGroupingService,
@@ -25,7 +27,10 @@ export class ColumnGroupingComponent {
   ngOnInit(): void {
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id);
-    this.getColumns();
+    if(this.session_id){
+      this.getColumns();
+      this.loadRecommendations();
+    }
   }
 
   getColumns() {
@@ -45,10 +50,10 @@ export class ColumnGroupingComponent {
     }
   }
 
-  getRecomendations() {}
-
   initializeSelectionRow() {
-    const newRow: { [key: string]: string[] } = {};
+    const newRow: { [key: string]: any; columnName: string } = {
+      columnName: '',
+    };
     for (const fileName of this.getKeys(this.columns)) {
       newRow[fileName] = [''];
     }
@@ -57,6 +62,10 @@ export class ColumnGroupingComponent {
 
   getKeys(obj: any): string[] {
     return Object.keys(obj);
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
   }
 
   addSelection(rowIndex: number, fileName: string): void {
@@ -79,15 +88,34 @@ export class ColumnGroupingComponent {
   }
 
   processGrouping(): void {
-    const selectedColumnsCount = this.countSelectedColumns();
-    if (selectedColumnsCount < 2) {
-      this.errorMessage =
-        'Debes seleccionar al menos 2 columnas para continuar.';
+    const requestData = this.buildRequestData();
+
+    this.router.navigate(['/carga'], { state: { data: requestData } });
+
+    if (!requestData || Object.keys(requestData).length === 0) {
+      this.errorMessage = 'Datos incompletos para procesar agrupación.';
       return;
     }
-    const requestData = this.buildRequestData();
-    this.router.navigate(['/carga'], { state: { data: requestData } });
+
+    this.columnGroupingService.sendGrouping(requestData, this.session_id || '').subscribe(
+      (response) => {
+        if (response.status === 200) {
+          console.log('Agrupación enviada exitosamente. Redirigiendo a previsualización...');
+          this.router.navigate(['/hresult']);
+        } else {
+          this.errorMessage = 'Error en el servidor. Intenta de nuevo.';
+          this.router.navigate(['/grouping'], { state: { error: this.errorMessage } });
+        }
+      },
+      (error) => {
+        this.errorMessage = error.status === 422 ? 'La estructura de los datos es incorrecta. ' +
+          'Por favor, revisa la selección de columnas.' : 'Ocurrió un error en el servidor, intenta de nuevo.';
+        this.router.navigate(['/grouping'], { state: { error: this.errorMessage } });
+      }
+    );
   }
+
+
   removeSelection(
     rowIndex: number,
     fileName: string,
@@ -106,14 +134,17 @@ export class ColumnGroupingComponent {
 
   countSelectedColumns(): number {
     let count = 0;
-
     this.selectionRows.forEach((row) => {
       for (const fileName in row) {
-        row[fileName].forEach((selection) => {
-          if (selection && selection.trim() !== '') {
-            count++;
-          }
-        });
+        if (Array.isArray(row[fileName])) {
+          row[fileName].forEach((selection: string) => {
+            if (selection && selection.trim() !== '') {
+              count++;
+            }
+          });
+        } else {
+          console.warn(`row[${fileName}] no es un array. Valor actual:`, row[fileName]);
+        }
       }
     });
 
@@ -123,21 +154,39 @@ export class ColumnGroupingComponent {
   buildRequestData(): any {
     const requestData: any = {};
 
-    this.selectionRows.forEach((row, index) => {
-      const columnKey = `additionalProp${index + 1}`;
+    console.log("selectionRows al iniciar buildRequestData:", this.selectionRows);
+
+    this.selectionRows.forEach((row) => {
+      const columnKey = row.columnName || 'default';
       requestData[columnKey] = {};
 
       for (const fileName in row) {
-        const selectedColumns = row[fileName].filter(
-          (column) => column.trim() !== ''
-        );
-        if (selectedColumns.length > 0) {
-          requestData[columnKey][fileName] = selectedColumns;
+        if (fileName !== 'columnName' && Array.isArray(row[fileName])) {
+          const selectedColumns = row[fileName].filter(
+            (column: string) => column.trim() !== ''
+          );
+          if (selectedColumns.length > 0) {
+            requestData[columnKey][fileName] = selectedColumns;
+          }
         }
       }
     });
-
+    console.log('JSON construido en buildRequestData:', JSON.stringify(requestData, null, 2));
     return requestData;
+  }
+
+  loadRecommendations() {
+    if (this.session_id) {
+      this.columnGroupingService.getRecommendations(this.session_id).subscribe(
+        (response) => {
+          this.recommendationsData = response.similarity;
+          console.log('Recomendaciones obtenidas:', this.recommendationsData);
+        },
+        (error) => {
+          console.error('Error al obtener recomendaciones:', error);
+        }
+      );
+    }
   }
 
   openModalPulpi() {
@@ -147,4 +196,36 @@ export class ColumnGroupingComponent {
   closeModalPulpi() {
     this.isModalOpen = false;
   }
+
+  acceptRecommendation(recommendationKey: string): void {
+    const recommendation = this.recommendationsData[recommendationKey];
+
+    this.acceptedRecommendations[recommendationKey] = true;
+
+    const newRow: { [key: string]: any; columnName: string } = {
+      columnName: recommendationKey
+    };
+
+    for (const fileKey in recommendation) {
+      const baseFileKey = fileKey.endsWith('_') ? fileKey.slice(0, -1) : fileKey;
+
+      if (!newRow[baseFileKey]) {
+        newRow[baseFileKey] = [];
+      }
+
+      const columns = Array.isArray(recommendation[fileKey]) ? recommendation[fileKey] : [recommendation[fileKey]];
+      newRow[baseFileKey] = [...newRow[baseFileKey], ...columns];
+    }
+
+    this.selectionRows.push(newRow);
+    console.log(`Recomendación ${recommendationKey} aceptada y agregada a la tabla de selección:`, newRow);
+
+  }
+
+  rejectRecommendation(recommendationKey: string): void {
+    console.log(`Recomendación ${recommendationKey} rechazada.`);
+    this.closeModalPulpi();
+  }
+
+  protected readonly Array = Array;
 }

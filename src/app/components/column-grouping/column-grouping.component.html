@@ -24,15 +24,23 @@
       <tr *ngFor="let row of selectionRows; let rowIndex = index">
         <td *ngFor="let fileName of getKeys(columns)">
           <div class="column-select">
-            <div *ngFor="let selection of selectionRows[rowIndex][fileName]; let selectionIndex = index">
+            <div *ngFor="let selection of (selectionRows[rowIndex][fileName] || []); let selectionIndex = index">
               <select [(ngModel)]="selectionRows[rowIndex][fileName][selectionIndex]">
-                <option value="" disabled selected>Selecciona una columna</option>
-                <option *ngFor="let column of columns[fileName]" [value]="column">{{ column }}</option>
+                <option value="" disabled>Selecciona una columna</option>
+                <option *ngFor="let column of (columns[fileName] || [])" [value]="column">{{ column }}</option>
               </select>
-              <button *ngIf="selectionRows[rowIndex][fileName].length > 1" (click)="removeSelection(rowIndex, fileName, selectionIndex)">-</button>
+              <button *ngIf="selectionRows[rowIndex][fileName].length > 1"
+                      (click)="removeSelection(rowIndex, fileName, selectionIndex)">-</button>
             </div>
             <button (click)="addSelection(rowIndex, fileName)">+</button>
           </div>
+        </td>
+        <td [attr.colspan]="getKeys(columns).length">
+          <input
+            [(ngModel)]="row.columnName"
+            placeholder="Nombre de la columna homogenizada"
+            class="column-name-input"
+          />
         </td>
         <td>
           <button class="remove-row-button" (click)="removeRow(rowIndex)">Eliminar fila</button>
@@ -46,7 +54,7 @@
       </tbody>
     </table>
     <div class="continue-button">
-      <button  (click)="processGrouping()">Continuar con la agrupación</button>
+      <button (click)="processGrouping()">Continuar con la agrupación</button>
     </div>
   </div>
   <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
@@ -54,9 +62,47 @@
   <div *ngIf="isModalOpen" class="modal-pulpi">
     <div class="modal-content-pulpi">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
-      <h2 style="color: #979BC4;">¡Hola,soy pupli!</h2>
-        <p>En esta pantalla te vamos a presentar algunas recomendaciones de columnas para homogenizar, si quieres aceptar las recomendaciones da click en aceptar y serán agregadas  </p>
-      <div class="speech-arrow"></div> 
+      <h2 style="color: #979BC4;">¡Hola, soy Pulpi!</h2>
+      <p>En esta pantalla te vamos a presentar algunas recomendaciones de columnas para homogenizar. Si quieres aceptar las recomendaciones, haz clic en "Aceptar" y se agregarán.</p>
+      <table *ngIf="recommendationsData" class="recommendation-table">
+        <thead>
+        <tr>
+          <th>Recomendación</th>
+          <th>Archivo</th>
+          <th>Columnas</th>
+          <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let recommendationKey of getKeys(recommendationsData)">
+          <td>{{ recommendationKey }}</td>
+          <td>
+            <div *ngFor="let fileKey of getKeys(recommendationsData[recommendationKey])">
+              {{ fileKey }}
+            </div>
+          </td>
+          <td>
+            <div *ngFor="let fileKey of getKeys(recommendationsData[recommendationKey])">
+          <span *ngIf="Array.isArray(recommendationsData[recommendationKey][fileKey])">
+            {{ recommendationsData[recommendationKey][fileKey].join(', ') }}
+          </span>
+              <span *ngIf="!Array.isArray(recommendationsData[recommendationKey][fileKey])">
+            {{ recommendationsData[recommendationKey][fileKey] }}
+          </span>
+            </div>
+          </td>
+          <td>
+            <button
+              (click)="acceptRecommendation(recommendationKey)"
+              [disabled]="acceptedRecommendations[recommendationKey]">
+              Aceptar
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!recommendationsData">Cargando recomendaciones...</p>
+      <div class="speech-arrow"></div>
     </div>
   </div>
 </div>
