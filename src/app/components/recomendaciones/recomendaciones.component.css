@@ -1,26 +1,29 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 .container {
   padding: 20px;
 }
 
 .header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: flex-end; 
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .titulo2 {
-  height: 20%;
-  width: 20%;
+  height: 20%; 
+  width: 20%; 
 }
 
 .header-logo {
   width: 150px; 
 }
 
-
+p{
+  font-family: 'Ubuntu', sans-serif;
+}
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -29,7 +32,7 @@
 .left-section {
   width: 40%; 
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Ubuntu', sans-serif;  
 }
 
 .left-section h2 {
@@ -50,21 +53,51 @@
   width: 55%;
 }
 
+
 .recommendation-card {
   border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
+  max-height: 220px;
+  overflow-y: auto; 
 }
 
+.table-container {
+  max-height: 180px; 
+  overflow-y: auto; 
+  border: 1px solid #ddd; 
+  border-radius: 5px;
+}
 .recommendation-card h3 {
   color: #375a7f;
   margin-bottom: 10px;
+  font-family: 'Ubuntu', sans-serif;
 }
+
+
+
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+th, td {
+  border: 1px solid #ddd; 
+  padding: 8px; 
+  text-align: left; 
+}
+
+th {
+  background-color: #f2f2f2; 
+  font-family: 'Ubuntu', sans-serif;
+}
+
 
 .description {
   font-size: 14px;
   color: #6c757d;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .action-buttons {
@@ -165,4 +198,8 @@
   .pulpi {
     width: 150px;
 
+  }
+
+  body {
+    font-family: 'Ubuntu', sans-serif; 
   }

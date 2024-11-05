@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 
 .container {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -64,7 +64,8 @@
   border: 1px solid #ddd;
   max-width: 150px; 
   word-wrap: break-word; 
-  white-space: normal; 
+  white-space: normal;
+  font-family: 'Ubuntu', sans-serif; 
 }
 
 .dynamic-table {
@@ -74,17 +75,20 @@
   margin-top: 20px;
   border-collapse: collapse;
   table-layout: auto; 
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .dynamic-table th {
   background-color: #f2f2f2;
   text-overflow: ellipsis;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .dynamic-table th span {
   display: inline-block;
   max-width: 100%;
   word-wrap: break-word;
+  font-family: 'Ubuntu', sans-serif;
 }
 .selection-wrapper {
   border: 1px solid #ddd;
@@ -180,7 +184,7 @@
 .modal {
   position: absolute;
   top: 135px; 
-  left: 2%; 
+  left: 0%; 
   width: 250px;
   background-color: #fff;
   border-radius: 10px;
@@ -199,7 +203,7 @@
 .speech-arrow {
   position: absolute;
   top: -20px; 
-  left: 2%;
+  left: 30%;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -218,4 +222,8 @@
 
 .close:hover {
   color: #333;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif; 
 }

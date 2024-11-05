@@ -1,25 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
-.header img.logo {
-  height: 50px;
+.logo {
+  width: 300px;
+  margin-bottom: 70px;
+  margin-top: 30px;
 }
 
-.header img.datagenization-logo {
-  height: 40px;
+.pulpi {
+  width: 150px;
+  margin-bottom: 70px;
+  cursor: pointer; 
 }
-
 .columns-grouping-section h2 {
   font-size: 16px;
   color: #2c3e50;
@@ -49,6 +55,9 @@ table thead th {
   font-weight: normal;
 }
 
+.agregar{
+  font-family: 'Ubuntu', sans-serif;
+}
 table tbody td {
   padding: 10px;
   text-align: center;
@@ -93,6 +102,7 @@ table tbody td {
   border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
+
 }
 
 .column-select button:hover {
@@ -179,7 +189,7 @@ button.add-row:hover {
 }
 
 .modal {
-  display: block; /* Mostrado por defecto, se controla con Angular */
+  display: block; 
   position: fixed;
   z-index: 1;
   left: 0;
@@ -187,7 +197,7 @@ button.add-row:hover {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
+  background-color: rgba(0, 0, 0, 0.4); 
 }
 
 .modal-content {
@@ -241,4 +251,6 @@ button.add-row:hover {
   text-align: left;
 }
 
-
+body {
+  font-family: 'Ubuntu', sans-serif; 
+}
