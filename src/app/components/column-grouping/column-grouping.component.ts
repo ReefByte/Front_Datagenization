@@ -13,6 +13,8 @@ export class ColumnGroupingComponent {
   columns: { [key: string]: string[] } = {};
   errorMessage: string | null = null;
   isModalOpen = false;
+  recommendationsData: any = null;
+  acceptedRecommendations: { [key: string]: boolean } = {};
 
   constructor(
     private columnGroupingService: ColumnGroupingService,
@@ -25,7 +27,10 @@ export class ColumnGroupingComponent {
   ngOnInit(): void {
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id);
-    this.getColumns();
+    if(this.session_id){
+      this.getColumns();
+      this.loadRecommendations();
+    }
   }
 
   getColumns() {
@@ -45,7 +50,6 @@ export class ColumnGroupingComponent {
     }
   }
 
-
   initializeSelectionRow() {
     const newRow: { [key: string]: any; columnName: string } = {
       columnName: '',
@@ -58,6 +62,10 @@ export class ColumnGroupingComponent {
 
   getKeys(obj: any): string[] {
     return Object.keys(obj);
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
   }
 
   addSelection(rowIndex: number, fileName: string): void {
@@ -163,11 +171,23 @@ export class ColumnGroupingComponent {
         }
       }
     });
-
     console.log('JSON construido en buildRequestData:', JSON.stringify(requestData, null, 2));
     return requestData;
   }
 
+  loadRecommendations() {
+    if (this.session_id) {
+      this.columnGroupingService.getRecommendations(this.session_id).subscribe(
+        (response) => {
+          this.recommendationsData = response.similarity;
+          console.log('Recomendaciones obtenidas:', this.recommendationsData);
+        },
+        (error) => {
+          console.error('Error al obtener recomendaciones:', error);
+        }
+      );
+    }
+  }
 
   openModalPulpi() {
     this.isModalOpen = true;
@@ -176,4 +196,36 @@ export class ColumnGroupingComponent {
   closeModalPulpi() {
     this.isModalOpen = false;
   }
+
+  acceptRecommendation(recommendationKey: string): void {
+    const recommendation = this.recommendationsData[recommendationKey];
+
+    this.acceptedRecommendations[recommendationKey] = true;
+
+    const newRow: { [key: string]: any; columnName: string } = {
+      columnName: recommendationKey
+    };
+
+    for (const fileKey in recommendation) {
+      const baseFileKey = fileKey.endsWith('_') ? fileKey.slice(0, -1) : fileKey;
+
+      if (!newRow[baseFileKey]) {
+        newRow[baseFileKey] = [];
+      }
+
+      const columns = Array.isArray(recommendation[fileKey]) ? recommendation[fileKey] : [recommendation[fileKey]];
+      newRow[baseFileKey] = [...newRow[baseFileKey], ...columns];
+    }
+
+    this.selectionRows.push(newRow);
+    console.log(`Recomendación ${recommendationKey} aceptada y agregada a la tabla de selección:`, newRow);
+
+  }
+
+  rejectRecommendation(recommendationKey: string): void {
+    console.log(`Recomendación ${recommendationKey} rechazada.`);
+    this.closeModalPulpi();
+  }
+
+  protected readonly Array = Array;
 }

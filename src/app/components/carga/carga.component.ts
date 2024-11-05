@@ -23,16 +23,13 @@ export class CargaComponent {
   ngOnInit() {
     this.session_id = sessionStorage.getItem('session_id');
 
-    if (!this.session_id) {
+    if (this.session_id) {
+      console.log('Session ID obtenido:', this.session_id);
+      this.enviarAgrupacion();
+    }else{
       console.error('No se pudo obtener el session_id.');
       return;
     }
-    console.log('Session ID obtenido:', this.session_id);
-    this.enviarAgrupacion();
-  }
-
-  navigateToCarga() {
-    this.router.navigate(['/previsualizacion-despues']);
   }
 
   enviarAgrupacion() {

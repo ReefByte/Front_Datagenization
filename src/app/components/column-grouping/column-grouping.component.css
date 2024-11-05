@@ -221,4 +221,24 @@ button.add-row:hover {
   border-radius: 4px;
 }
 
+.recommendation-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recommendation-table th, .recommendation-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.recommendation-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+.recommendation-table td {
+  text-align: left;
+}
+
 

@@ -24,7 +24,9 @@ export class ColumnSelectionComponent {
   ngOnInit():void{
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id)
-    this.getColumns()
+    if(this.session_id){
+      this.getColumns()
+    }
   }
 
   getColumns() {
@@ -41,20 +43,6 @@ export class ColumnSelectionComponent {
     } else {
       console.error('No hay session id valido');
     }
-  }
-
-  selectionRows: any[] = [[{}]];
-
-  addRow() {
-    this.selectionRows.push([{}]);
-  }
-
-  addSelection(row: any[]) {
-    row.push({});
-  }
-
-  removeSelection(row: any[]) {
-    row.pop();
   }
 
   getKeys(obj: any): string[] {
