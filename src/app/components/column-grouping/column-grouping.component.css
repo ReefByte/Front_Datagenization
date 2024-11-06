@@ -17,6 +17,18 @@
   padding: 0;
 }
 
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 800;
+  font-size: 14px;
+}
+
+
 .logo {
   width: 300px;
   margin-bottom: 70px;
@@ -26,7 +38,7 @@
 .pulpi {
   width: 150px;
   margin-bottom: 70px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .columns-grouping-section h2 {
@@ -111,9 +123,9 @@ table tbody td {
 
 .button-group {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .column-select select {
@@ -168,7 +180,9 @@ table tbody td {
 }
 
 .modal-pulpi {
-  display: block; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -176,7 +190,7 @@ table tbody td {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content-pulpi {
@@ -185,6 +199,8 @@ table tbody td {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  max-height: 80%;
+  overflow: auto;
 }
 
 .close {
@@ -225,5 +241,5 @@ table tbody td {
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
 }
