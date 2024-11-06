@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { ColumnSelectionService } from '../../service/column-selection.service';
 import { Router } from '@angular/router';
@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
   templateUrl: './column-selection.component.html',
   styleUrls: ['./column-selection.component.css'],
 })
-export class ColumnSelectionComponent {
+export class ColumnSelectionComponent implements OnInit{
   session_id: string | null = '';
   isModalOpen = false;
   isLoadingPreview = false;
+  isLoadingColumns = false;
   currentFileName :string = ""
   isPreviewOpen = false;
   columns: { [key: string]: string[] } = {};
@@ -26,6 +27,7 @@ export class ColumnSelectionComponent {
 
 
   ngOnInit():void{
+    this.isLoadingColumns = true;
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id)
     if(this.session_id){
@@ -44,6 +46,7 @@ export class ColumnSelectionComponent {
           console.error('Error al obtener datos: ', error);
         }
       );
+      this.isLoadingColumns = false;
     } else {
       console.error('No hay session id valido');
     }
