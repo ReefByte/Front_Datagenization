@@ -16,7 +16,7 @@
       <thead>
       <tr>
         <th *ngFor="let fileName of getKeys(columns)">
-          {{ fileName }}
+          {{ truncateFileName(fileName) }}
         </th>
       </tr>
       </thead>

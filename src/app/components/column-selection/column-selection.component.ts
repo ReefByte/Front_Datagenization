@@ -27,11 +27,12 @@ export class ColumnSelectionComponent implements OnInit{
 
 
   ngOnInit():void{
-    this.isLoadingColumns = true;
+    this.isLoadingColumns = false;
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id)
     if(this.session_id){
       this.getColumns()
+      this.isLoadingColumns = false;
     }
   }
 
@@ -46,7 +47,6 @@ export class ColumnSelectionComponent implements OnInit{
           console.error('Error al obtener datos: ', error);
         }
       );
-      this.isLoadingColumns = false;
     } else {
       console.error('No hay session id valido');
     }
