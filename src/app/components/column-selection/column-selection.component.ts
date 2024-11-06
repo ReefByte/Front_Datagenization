@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
 export class ColumnSelectionComponent {
   session_id: string | null = '';
   isModalOpen = false;
+  isLoadingPreview = false;
+  currentFileName :string = ""
+  isPreviewOpen = false;
   columns: { [key: string]: string[] } = {};
-
+  csvData: string[][] = [];
+  csvHeaders: string[] = [];
 
   constructor(
     private columnSelectionService: ColumnSelectionService,
@@ -67,6 +71,26 @@ export class ColumnSelectionComponent {
       .map((x, i) => i);
   }
 
+  preview(filename : string) {
+    this.isLoadingPreview = true;
+    this.currentFileName = filename;
+    if(this.session_id){
+      this.columnSelectionService.getPreview(this.session_id, filename).subscribe(
+        (response: any) => {
+          const base64String = response.file;
+          console.log(base64String)
+          const csvContent = atob(base64String);
+          this.parseCsv(csvContent);
+          console.log('Datos guardados exitosamente ', this.columns);
+          this.openPreview();
+        },
+        (error: any) => {
+          console.error('Error al obtener datos: ', error);
+        }
+      );
+    }
+  }
+
   routing() {
     this.router.navigate(['/grouping']);
   }
@@ -77,5 +101,25 @@ export class ColumnSelectionComponent {
 
   closeModalPulpi() {
     this.isModalOpen = false;
+  }
+
+  openPreview() {
+    this.isPreviewOpen = true;
+    this.isLoadingPreview = false;
+  }
+
+  closePreview() {
+    this.isPreviewOpen = false;
+    this.csvData = [];
+    this.csvHeaders = [];
+    this.currentFileName = '';
+  }
+
+  parseCsv(csvContent: string) {
+    const lines = csvContent.split('\n').filter(line => line.trim() !== '');
+    if (lines.length > 0) {
+      this.csvHeaders = lines[0].split(',');
+      this.csvData = lines.slice(1).map(line => line.split(','));
+    }
   }
 }

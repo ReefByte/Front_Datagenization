@@ -8,11 +8,14 @@
       <h2>Estas son las columnas de cada dataset:</h2>
       <table class="dynamic-table">
         <thead>
-          <tr>
-            <th *ngFor="let fileName of getKeys(columns)">
-              <span>{{ fileName }}</span>
-            </th>
-          </tr>
+        <tr>
+          <th *ngFor="let fileName of getKeys(columns)">
+            <span>{{ fileName }}</span>
+            <div class="button-container">
+              <button class="center-middle-button" (click)=preview(fileName)>Previsualizar</button>
+            </div>
+          </th>
+        </tr>
         </thead>
         <tbody>
         <tr *ngFor="let i of getMaxRows(columns); let rowIndex = index">
@@ -26,13 +29,42 @@
   </div>
 
   <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
-  
+
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
       <h2 style="color: #979BC4;">¡Hola, soy pulpi!</h2>
-      <p>En esta pantalla se van a mostrar las columnas que contienen cada uno de los datasets subidos y en la siguiente se les va a dar la opción de buscar que columnas quieren homogenizar entre ellas. </p>
-      <div class="speech-arrow"></div> 
+      <p>En esta pantalla se van a mostrar las columnas que contienen cada uno de los datasets subidos y en la siguiente
+        se les va a dar la opción de buscar que columnas quieren homogenizar entre ellas. </p>
+      <div class="speech-arrow"></div>
+    </div>
+  </div>
+
+  <div *ngIf="isPreviewOpen" class="modal-overlay" (click)="closePreview()"></div>
+
+  <div *ngIf="isPreviewOpen" class="modal-preview">
+    <div class="modal-content-preview">
+      <span class="close" (click)="closePreview()">&times;</span>
+      <h2>Previsualización de {{ currentFileName }}</h2>
+      <div class="table-container">
+        <table class="dynamic-table">
+          <thead>
+          <tr>
+            <th *ngFor="let header of csvHeaders">{{ header }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of csvData">
+            <td *ngFor="let cell of row">{{ cell }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoadingPreview" class="overlay-container">
+    <div>
+      <img src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
     </div>
   </div>
 

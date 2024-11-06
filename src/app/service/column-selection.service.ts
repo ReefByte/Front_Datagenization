@@ -24,4 +24,8 @@ export class ColumnSelectionService {
     return this.http.get(`${this.apiUrl}read_csv`, {params})
   }
 
+  getPreview(session_id:string, filename:string) : Observable<any> {
+    let params = new HttpParams().set('session_id', session_id).set('filename', filename)
+    return this.http.get(`${this.apiUrl}get_preview`, {params})
+  }
 }
