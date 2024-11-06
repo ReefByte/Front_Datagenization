@@ -4,9 +4,9 @@
   font-family: 'Ubuntu', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
   height: 97vh;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .header {
@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
 }
 
 .columns-dataset h2 {
@@ -49,7 +49,7 @@
 }
 
 .columns-dataset tbody tr td {
-  min-width: 150px; 
+  min-width: 150px;
 }
 
 .columns-dataset th {
@@ -62,19 +62,19 @@
   padding: 8px 12px;
   text-align: left;
   border: 1px solid #ddd;
-  max-width: 150px; 
-  word-wrap: break-word; 
+  max-width: 150px;
+  word-wrap: break-word;
   white-space: normal;
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .dynamic-table {
   width: auto;
   max-width: 100%;
-  overflow-x: auto; 
+  overflow-x: auto;
   margin-top: 20px;
   border-collapse: collapse;
-  table-layout: auto; 
+  table-layout: auto;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -139,12 +139,30 @@
   padding: 10px 25px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;  
+  cursor: pointer;
   bottom: 65px;
   right: 65px;
-  z-index: 1002;
+  z-index: 800;
   font-size: 18px;
 }
+
+
+.center-middle-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
 
 .bottom-right-button:hover {
   background-color: #2F5F98;
@@ -161,13 +179,13 @@
   bottom: 0;
   left: 0;
   z-index: 1002;
-  padding: 10px 0; 
+  padding: 10px 0;
 }
 
 
 .columns-section {
-  flex: 1; 
-  overflow: auto; 
+  flex: 1;
+  overflow: auto;
 }
 
 .modal-overlay {
@@ -176,15 +194,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); 
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 900;
 }
 
 
 .modal {
   position: absolute;
-  top: 135px; 
-  left: 0%; 
+  top: 135px;
+  left: 0%;
   width: 250px;
   background-color: #fff;
   border-radius: 10px;
@@ -202,13 +220,13 @@
 
 .speech-arrow {
   position: absolute;
-  top: -20px; 
+  top: -20px;
   left: 30%;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #fff; 
+  border-top: 10px solid #fff;
 }
 
 .close {
@@ -225,5 +243,47 @@
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.modal-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-preview {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+.overlay-container {
+  z-index: 999;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
 }
