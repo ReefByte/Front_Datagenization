@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
-
+/*
 .container {
   font-family: 'Ubuntu', sans-serif;
   display: flex;
@@ -9,14 +9,14 @@
   position: relative;
   min-height: 100vh;
 }
-
+*/
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 0;
 }
 
@@ -36,14 +36,17 @@
   font-weight: bold;
   font-size: 35px;
   color: #2F5F98;
-  margin-top: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
+/*
 .columns-section {
   width: 80%;
   margin: 20px 0;
   overflow-x: auto;
   flex-grow: 1;
 }
+/*
 .dynamic-table {
   width: auto;
   max-width: 100%;
@@ -52,7 +55,7 @@
   border-collapse: collapse;
   table-layout: auto;
 }
-
+*/
 .columns-dataset {
   display: flex;
   flex-direction: column;
@@ -75,7 +78,7 @@
   text-overflow: ellipsis;
 }
 
-.bottom-right-button {
+/*.bottom-right-button {
   background-color: #2F5F98;
   color: white;
   padding: 10px 25px;
@@ -87,7 +90,7 @@
   right: 65px;
   font-size: 18px;
 }
-
+*/
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -154,4 +157,45 @@ body {
   bottom: 0;
   left: 0;
   z-index: 1000;
+}
+
+.container {
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 0px; 
+}
+
+.columns-section {
+  width: 60%;
+  margin: 20px 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 250px); 
+}
+
+.dynamic-table {
+  width: auto;
+  max-width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 65px;
+  right: 25px; 
+  font-size: 18px;
+  z-index: 1001;
 }

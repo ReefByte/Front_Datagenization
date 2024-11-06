@@ -24,15 +24,19 @@
       <tr *ngFor="let row of selectionRows; let rowIndex = index">
         <td *ngFor="let fileName of getKeys(columns)">
           <div class="column-select">
-            <div *ngFor="let selection of (selectionRows[rowIndex][fileName] || []); let selectionIndex = index">
-              <select [(ngModel)]="selectionRows[rowIndex][fileName][selectionIndex]">
-                <option value="" disabled>Selecciona una columna</option>
-                <option *ngFor="let column of (columns[fileName] || [])" [value]="column">{{ column }}</option>
-              </select>
-              <button *ngIf="selectionRows[rowIndex][fileName].length > 1"
-                      (click)="removeSelection(rowIndex, fileName, selectionIndex)">-</button>
+            <div class="selection-container">
+              <div *ngFor="let selection of (selectionRows[rowIndex][fileName] || []); let selectionIndex = index" class="selection-group">
+                <select [(ngModel)]="selectionRows[rowIndex][fileName][selectionIndex]">
+                  <option value="" disabled>Selecciona una columna</option>
+                  <option *ngFor="let column of (columns[fileName] || [])" [value]="column">{{ column }}</option>
+                </select>
+                <div class="button-group">
+                  <button *ngIf="selectionRows[rowIndex][fileName].length > 1"
+                          (click)="removeSelection(rowIndex, fileName, selectionIndex)" class="eliminar">-</button>
+                  <button (click)="addSelection(rowIndex, fileName)" class="agregar">+</button>
+                </div>
+              </div>
             </div>
-            <button (click)="addSelection(rowIndex, fileName)">+</button>
           </div>
         </td>
         <td [attr.colspan]="getKeys(columns).length">
@@ -43,7 +47,7 @@
           />
         </td>
         <td>
-          <button class="remove-row-button" (click)="removeRow(rowIndex)">Eliminar fila</button>
+          <button class="eliminar" (click)="removeRow(rowIndex)">Eliminar fila</button>
         </td>
       </tr>
       <tr>
@@ -93,6 +97,7 @@
           </td>
           <td>
             <button
+              class="continue-button"
               (click)="acceptRecommendation(recommendationKey)"
               [disabled]="acceptedRecommendations[recommendationKey]">
               Aceptar
