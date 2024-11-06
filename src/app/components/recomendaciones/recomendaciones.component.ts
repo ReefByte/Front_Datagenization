@@ -39,7 +39,7 @@ export class RecomendacionesComponent implements OnInit{
     if (this.session_id) {
         this.RecomendacionesService.getRecommendation(this.session_id).subscribe(
             (response: any) => {
-                this.recomendacion = response?.recomendaciones || {}; // Cambié recommendations a recomendaciones
+                this.recomendacion = response.recommendations;
                 console.log('Datos guardados exitosamente ', this.recomendacion);
             },
             (error: any) => {
@@ -51,11 +51,10 @@ export class RecomendacionesComponent implements OnInit{
     }
 }
 
-getNullsInfoEntries(): [string, number, number][] {
+getNullsInfoEntries(): [string, number][] {
     return Object.entries(this.recomendacion).map(([columna, valores]: [string, any]) => [
         columna,
         valores.nulls || 0,
-        valores.outliers || 0
     ]);
 }
 }

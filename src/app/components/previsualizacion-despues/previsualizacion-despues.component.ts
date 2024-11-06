@@ -35,7 +35,7 @@ export class PrevisualizacionDespuesComponent implements OnInit {
   }
 
   navigateToCarga() {
-    this.router.navigate(['/recomendaciones']);
+    this.router.navigate(['/descargar']);
   }
 
   openModalPulpi() {
