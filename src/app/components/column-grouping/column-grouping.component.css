@@ -90,6 +90,10 @@ table tbody td {
   text-align: center;
   vertical-align: middle;
   border: 1px solid #ccc;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .titulo3 {
@@ -115,6 +119,8 @@ table tbody td {
 .column-select {
   display: flex;
   flex-direction: column;
+  max-height: 150px;
+  overflow-y: auto
 }
 
 .selection-group {
@@ -141,6 +147,9 @@ table tbody td {
 .continue-button {
   text-align: center;
   margin-top: 20px;
+  background-color: #2F5F98;
+  color: white;
+
 }
 
 .continue-button button {
@@ -212,12 +221,14 @@ table tbody td {
 
 .column-name-input {
   width: 100%; /* Ocupa todo el ancho de la celda */
-  max-width: 300px; /* Limita el ancho máximo si lo prefieres */
+  max-width: 100%; /* Asegura que el ancho máximo sea igual al de la celda */
   padding: 5px;
   font-size: 14px;
   border: 1px solid #bdc3c7;
   border-radius: 4px;
-  text-align: center; /* Centra el texto dentro del campo */
+  overflow: hidden; /* Evita desbordamientos */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos si el contenido es largo */
+  white-space: nowrap;/* Centra el texto dentro del campo */
 }
 
 .recommendation-table {
