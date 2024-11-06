@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { RecomendacionesService} from '../../service/recomendaciones.service';
 @Component({
@@ -6,7 +6,7 @@ import { RecomendacionesService} from '../../service/recomendaciones.service';
   templateUrl: './recomendaciones.component.html',
   styleUrls: ['./recomendaciones.component.css'],
 })
-export class RecomendacionesComponent {
+export class RecomendacionesComponent implements OnInit{
   isModalOpen = false;
   session_id: string|null = '';
   recomendacion: any;

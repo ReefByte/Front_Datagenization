@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { DescargarDatasetService } from '../../service/descargar-dataset.service';
 
@@ -7,7 +7,7 @@ import { DescargarDatasetService } from '../../service/descargar-dataset.service
   templateUrl: './descargar-dataset.component.html',
   styleUrls: ['./descargar-dataset.component.css'],
 })
-export class DescargarDatasetComponent {
+export class DescargarDatasetComponent implements OnInit{
   sessionId: string | null = '';
   constructor(
     private router: Router,

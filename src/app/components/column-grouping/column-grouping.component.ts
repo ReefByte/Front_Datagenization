@@ -1,4 +1,4 @@
-  import { Component } from '@angular/core';
+  import {Component, OnInit} from '@angular/core';
   import { ColumnGroupingService } from '../../service/column-grouping.service';
   import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@
     templateUrl: './column-grouping.component.html',
     styleUrls: ['./column-grouping.component.css'],
   })
-  export class ColumnGroupingComponent {
+  export class ColumnGroupingComponent implements OnInit{
     selectionRows: Array<{ [key: string]: any; columnName: string }> = [];
     session_id: string|null = '';
     columns: { [key: string]: string[] } = {};
