@@ -17,6 +17,18 @@
   padding: 0;
 }
 
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 800;
+  font-size: 14px;
+}
+
+
 .logo {
   width: 300px;
   margin-bottom: 70px;
@@ -177,7 +189,9 @@ table tbody td {
 }
 
 .modal-pulpi {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -194,6 +208,8 @@ table tbody td {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  max-height: 80%;
+  overflow: auto;
 }
 
 .close {
@@ -237,15 +253,4 @@ table tbody td {
 
 body {
   font-family: 'Ubuntu', sans-serif;
-}
-
-.file-name-cell {
-  white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
-  overflow: hidden; /* Evita desbordamientos */
-  text-overflow: ellipsis; /* Muestra puntos suspensivos si el contenido es largo */
-  max-width: 200px; /* Ajusta el ancho máximo según lo necesites */
-}
-
-.file-name-cell:hover {
-  overflow: auto; /* Permite desplazamiento en hover */
 }

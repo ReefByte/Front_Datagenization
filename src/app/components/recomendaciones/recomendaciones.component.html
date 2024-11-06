@@ -5,7 +5,7 @@
   </div>
 
   <div class="main-content">
- 
+
     <div class="left-section">
       <h2>Recomendaciones</h2>
       <p>Te quiero realizar algunas recomendaciones para tus datos.</p>
@@ -31,14 +31,13 @@
                       <tr *ngFor="let entry of getNullsInfoEntries()">
                           <td>{{ entry[0] }}</td>
                           <td>{{ entry[1] }}</td>
-                          <td>{{ entry[2] }}</td>
                       </tr>
                   </tbody>
               </table>
           </div>
       </div>
   </div>
-  
+
   </div>
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">

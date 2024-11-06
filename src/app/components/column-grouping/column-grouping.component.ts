@@ -25,6 +25,7 @@
     }
 
     ngOnInit(): void {
+      this.isModalOpen = true;
       this.session_id = sessionStorage.getItem('session_id')
       console.log(this.session_id);
       if(this.session_id){
