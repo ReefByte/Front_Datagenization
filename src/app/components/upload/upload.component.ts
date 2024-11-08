@@ -20,6 +20,7 @@ export class UploadComponent implements OnInit {
   showModal: boolean = false;
   showFormatErrorModal: boolean = false;
   isModalOpen = false;
+  isLoading = false;
 
   ngOnInit(): void {
     this.session_id = uuidv4();
@@ -42,9 +43,10 @@ export class UploadComponent implements OnInit {
   }
 
   procesar() {
+    this.isLoading = true;
     if (this.selectedFiles.length == 0) {
       this.showModal = true;
-
+      this.isLoading = false;
     }
     else{
       // @ts-ignore
@@ -52,8 +54,10 @@ export class UploadComponent implements OnInit {
         (respuesta: any) => {
           console.log('Archivo subido con éxito', respuesta);
           this.router.navigate(['/columns'])
+          this.isLoading = true;
         },
         (error: any) => {
+          this.isLoading = true;
           console.error('Error al subir archivo', error);
         })
     }
@@ -76,5 +80,43 @@ export class UploadComponent implements OnInit {
 
   closeModalPulpi() {
     this.isModalOpen = false;
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const dropZone = event.currentTarget as HTMLElement;
+    dropZone.classList.add('dragover');
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const dropZone = event.currentTarget as HTMLElement;
+    dropZone.classList.remove('dragover');
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const dropZone = event.currentTarget as HTMLElement;
+    dropZone.classList.remove('dragover');
+
+    if (event.dataTransfer?.files) {
+      this.handleFiles(event.dataTransfer.files);
+    }
+  }
+
+  handleFiles(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      // Procesa cada archivo según tus necesidades
+      console.log('Archivo seleccionado:', file.name);
+    }
+    if (files && files.length > 0) {
+      this.selectedFileNames.push(...Array.from(files).map(file => file.name));
+      this.selectedFiles.push(...Array.from(files));
+      this.buttonLabel = 'Seleccionar más archivos';
+    }
   }
 }

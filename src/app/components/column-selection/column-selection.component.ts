@@ -19,6 +19,8 @@ export class ColumnSelectionComponent implements OnInit{
   columns: { [key: string]: string[] } = {};
   csvData: string[][] = [];
   csvHeaders: string[] = [];
+  csvContentLines: string[] = [];
+  lastLine: number = 11;
 
   constructor(
     private columnSelectionService: ColumnSelectionService,
@@ -81,8 +83,15 @@ export class ColumnSelectionComponent implements OnInit{
       this.columnSelectionService.getPreview(this.session_id, filename).subscribe(
         (response: any) => {
           const base64String = response.file;
-          console.log(base64String)
-          const csvContent = atob(base64String);
+          const binaryString = atob(base64String);
+          const len = binaryString.length;
+          const bytes = new Uint8Array(len);
+          for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          const decoder = new TextDecoder('utf-8');
+          const csvContent = decoder.decode(bytes);
+
           this.parseCsv(csvContent);
           console.log('Datos guardados exitosamente ', this.columns);
           this.openPreview();
@@ -120,9 +129,19 @@ export class ColumnSelectionComponent implements OnInit{
 
   parseCsv(csvContent: string) {
     const lines = csvContent.split('\n').filter(line => line.trim() !== '');
+    this.csvContentLines = lines;
     if (lines.length > 0) {
       this.csvHeaders = lines[0].split(',');
-      this.csvData = lines.slice(1).map(line => line.split(','));
+      this.updateCsvRows()
     }
+  }
+
+  updateCsvRows(){
+    this.csvData = this.csvContentLines.slice(1, this.lastLine).map(line => line.split(','));
+  }
+
+  addPrevisualizationLines(){
+    this.lastLine += 10;
+    this.updateCsvRows();
   }
 }
