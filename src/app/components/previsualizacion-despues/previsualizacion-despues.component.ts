@@ -8,6 +8,7 @@ import { PrevisualizacionDespuesService } from '../../service/previsualizacion-d
   styleUrls: ['./previsualizacion-despues.component.css'],
 })
 export class PrevisualizacionDespuesComponent implements OnInit {
+
   sessionId: string | null = '';
   data: any[] = [];
   isModalOpen = false;
@@ -34,6 +35,21 @@ export class PrevisualizacionDespuesComponent implements OnInit {
     }
   }
 
+  ngOnInit() {
+    if (this.sessionId != null) {
+      this.PrevisualizacionDespuesService.getCsvColumnsAfter(
+        this.sessionId
+      ).subscribe(
+        (response) => {
+          console.log(response);
+          this.data = response;
+        },
+        (error) => {
+          console.error('Error fetching CSV columns:', error);
+        }
+      );
+    }
+  }
   navigateToCarga() {
     this.router.navigate(['/descargar']);
   }

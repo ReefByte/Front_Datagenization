@@ -26,6 +26,7 @@ export class UploadComponent implements OnInit {
     this.session_id = uuidv4();
     sessionStorage.setItem('session_id',this.session_id);
     console.log(this.session_id);
+    sessionStorage.setItem('session_id', this.session_id);
   }
 
   openFileDialog() {
@@ -77,6 +78,7 @@ export class UploadComponent implements OnInit {
   openModalPulpi() {
     this.isModalOpen = true;
   }
+
 
   closeModalPulpi() {
     this.isModalOpen = false;
