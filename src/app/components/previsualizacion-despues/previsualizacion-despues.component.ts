@@ -8,12 +8,32 @@ import { PrevisualizacionDespuesService } from '../../service/previsualizacion-d
   styleUrls: ['./previsualizacion-despues.component.css'],
 })
 export class PrevisualizacionDespuesComponent implements OnInit {
+
+  sessionId: string | null = '';
+  data: any[] = [];
+  isModalOpen = false;
   constructor(
     private router: Router,
-    private PrevisualizacionDespuesService: PrevisualizacionDespuesService
+    private previsualizacionDespuesService: PrevisualizacionDespuesService
   ) {}
-  sessionId: string | null = sessionStorage.getItem('sessionId');
-  data: any[] = [];
+
+  ngOnInit() {
+    this.sessionId = sessionStorage.getItem('session_id');
+
+    if (this.sessionId != null) {
+      this.previsualizacionDespuesService
+        .getCsvColumnsAfter(this.sessionId)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.data = response;
+          },
+          (error) => {
+            console.error('Error fetching CSV columns:', error);
+          }
+        );
+    }
+  }
 
   ngOnInit() {
     if (this.sessionId != null) {
@@ -31,6 +51,14 @@ export class PrevisualizacionDespuesComponent implements OnInit {
     }
   }
   navigateToCarga() {
-    this.router.navigate(['/recomendaciones']);
+    this.router.navigate(['/descargar']);
+  }
+
+  openModalPulpi() {
+    this.isModalOpen = true;
+  }
+
+  closeModalPulpi() {
+    this.isModalOpen = false;
   }
 }

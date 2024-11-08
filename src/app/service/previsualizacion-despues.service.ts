@@ -10,10 +10,8 @@ export class PrevisualizacionDespuesService {
   constructor(private http: HttpClient) {}
   private apiUrl = environment.serverUrl;
 
-  getCsvColumnsAfter(sessionId: string): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('session_id', sessionId);
-    console.log(`${this.apiUrl}homogenize_test`);
-    return this.http.get(`${this.apiUrl}homogenize_test`);
+  getCsvColumnsAfter(session_id: string): Observable<any> {
+    let params = new HttpParams().set('session_id', session_id);
+    return this.http.get(`${this.apiUrl}preview_csv`,{params});
   }
 }

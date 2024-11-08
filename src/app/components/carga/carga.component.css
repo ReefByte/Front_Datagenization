@@ -6,7 +6,7 @@
     margin-bottom: 20px;
     background-color: #ffff;
   }
-  
+
 .upload-container{
     background-color: #ffff;
 }
@@ -15,13 +15,13 @@
     margin-bottom: 70px;
     margin-top: 30px;
   }
-  
+
   .img {
     width: 120px;
     margin-bottom: 40px;
   }
 
-  
+
   .bottom-right-button {
     background-color: #2F5F98;
     color: white;
@@ -42,15 +42,15 @@
     height: 50px;
     background-color: #2F5F98;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
   }
-  
+
   .upload-icon {
     margin-bottom: 20px;
   }
-  
+
   .explore-button {
     background-color: #2F5F98;
     color: white;
@@ -60,19 +60,19 @@
     cursor: pointer;
     font-size: 16px;
   }
-  
+
   .explore-button:hover {
     background-color: #2F5F98;
   }
 
   .loading-gif {
-    width: 23%; 
+    width: 23%;
     height: 23%;
   }
 
    .loading-text {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 20px; /* Tamaño del texto */
-    color: #000000; /* Color del texto */
-    margin-top: 10px; /* Espacio entre el GIF y el texto */
-    }   
+    font-size: 20px;
+    color: #000000;
+    margin-top: 10px;
+    }

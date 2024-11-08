@@ -1,26 +1,37 @@
 <div class="container">
   <div class="header">
-      <p class="titulo3">Previsualización de resultados</p>
-      <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
+    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+    <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
+  <p class="titulo3">Previsualización de resultados</p>
   <div class="columns-section">
-      <div class="columns-dataset">
-          <table>
-              <thead>
-                  <tr>
-                      <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let row of data">
-                      <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+    <div class="columns-dataset">
+      <table class="dynamic-table">
+        <thead>
+          <tr>
+            <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data">
+            <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
-  <div class="container-color"></div>
-</div>
 
-  
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
+
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalPulpi()">&times;</span>
+      <h2 class="modal-title" style="color: #979BC4;" >¡Hola, soy pulpi!</h2>
+      <p>En esta pantalla se va a mostrar con qué columnas queda el dataset resultado con ejemplos en cada una.</p>
+      <div class="speech-arrow"></div>
+    </div>
+  </div>
+
+  <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
+</div>
+<div class="container-color"></div>

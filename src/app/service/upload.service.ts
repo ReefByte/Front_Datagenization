@@ -7,8 +7,9 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class UploadService {
-
   private apiUrl = environment.serverUrl;
+  private session_id :string ="";
+
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -26,4 +27,13 @@ export class UploadService {
     formData.append('session_id', session_id);
     return this.http.post(`${this.apiUrl}upload_csv`, formData);
   }
+
+  get getSession_id(): string {
+    return this.session_id;
+  }
+
+  set setSession_id(value: string) {
+    this.session_id = value;
+  }
+
 }

@@ -8,8 +8,8 @@
   <div class="download-section">
     <p>Descarga tus datos homogenizados:</p>
     <div class="dataset-download">
-      <span class="dataset-name">Nombre dataset</span>
-      <button class="download-btn">
+      <input type="text" class="dataset-name" placeholder="Nombre dataset" />
+      <button class="download-btn" (click)=downloadCsv()>
         Descargar
         <img src="assets/Download.png" alt="Download" class="download-icon" />
       </button>
@@ -19,8 +19,8 @@
   <div class="footer">
     <img src="assets/pulpo.jpg" alt="Pulpo" class="logo">
     <p>¡Gracias por utilizar Datagenization!</p>
-    <button class="home-btn" (click)="navigateToCarga()">
-      
+    <button class="home-btn" (click)="navigateToHome()">
+
       <img src="assets/home.png" alt="Home" class="home-icon" />
     </button>
   </div>
