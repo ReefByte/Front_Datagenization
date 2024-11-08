@@ -1,12 +1,14 @@
 <div class="container">
   <div class="header">
-    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="logo" (click)="openModalPulpi()">
+    <img *ngIf="!pulpiHasMessage" src="../../../assets/Pulpi_message_gif.gif" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+    <img *ngIf="pulpiHasMessage" src="../../../assets/Pulpi_message_pending_gif.gif" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
     <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
   <div class="columns-section">
     <div class="columns-dataset">
       <h2>Estas son las columnas de cada dataset:</h2>
-      <table class="dynamic-table">
+      <img *ngIf="isLoadingPreview" src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
+      <table *ngIf="!isLoadingPreview" class="dynamic-table">
         <thead>
         <tr>
           <th *ngFor="let fileName of getKeys(columns)">
@@ -33,9 +35,8 @@
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
-      <h2 style="color: #979BC4;">¡Hola, soy pulpi!</h2>
-      <p>En esta pantalla se van a mostrar las columnas que contienen cada uno de los datasets subidos y en la siguiente
-        se les va a dar la opción de buscar que columnas quieren homogenizar entre ellas. </p>
+      <h2 style="color: #979BC4;">¡Hora de revisar tus datos!</h2>
+      <p>En esta pantalla se van a mostrar las columnas que componen cada uno de los datasets subidos. ¡También puedes ver todos los datos en el botón <strong>Previsualizar</strong>! Al dar click en continuar podrás seleccionar las columnas a homogenizar. </p>
       <div class="speech-arrow"></div>
     </div>
   </div>
@@ -44,7 +45,7 @@
 
   <div *ngIf="isPreviewOpen" class="modal-preview">
     <div class="modal-content-preview">
-      <span class="close" (click)="closePreview()">&times;</span>
+      <span class="close-preview" (click)="closePreview()">&times;</span>
       <h2>Previsualización de {{ currentFileName }}</h2>
       <div class="table-container">
         <table class="dynamic-table">
@@ -62,16 +63,11 @@
         <button class="left-button" (click)=addPrevisualizationLines()>Cargar más filas</button>
       </div>
     </div>
-  </div>
-  <div *ngIf="isLoadingPreview" class="overlay-container">
-    <div>
-      <img src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
-    </div>
-  </div>
   <div *ngIf="isLoadingColumns" class="overlay-container">
     <div>
       <img src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
     </div>
+  </div>
   </div>
 
 

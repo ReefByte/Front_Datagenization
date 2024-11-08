@@ -21,6 +21,7 @@ export class UploadComponent implements OnInit {
   showFormatErrorModal: boolean = false;
   isModalOpen = false;
   isLoading = false;
+  pulpiHasMessage = true;
 
   ngOnInit(): void {
     this.session_id = uuidv4();
@@ -76,6 +77,7 @@ export class UploadComponent implements OnInit {
   }
 
   openModalPulpi() {
+    this.pulpiHasMessage = false;
     this.isModalOpen = true;
   }
 

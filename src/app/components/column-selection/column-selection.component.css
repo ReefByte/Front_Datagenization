@@ -18,7 +18,7 @@
 }
 
 .logo, .datagenization-logo {
-  height: 100px;
+  max-height: 100px;
 }
 
 .columns-section, .columns-selection {
@@ -171,6 +171,12 @@
   text-align: left;
 }
 
+.loading-gif {
+  width: 30%;
+  height: auto;
+}
+
+
 .button-container{
   display: flex;
   justify-content: center;
@@ -214,13 +220,14 @@
 
 .modal {
   position: absolute;
-  top: 135px;
+  top: 160px;
   left: 0%;
   width: 250px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 
@@ -233,13 +240,19 @@
 
 .speech-arrow {
   position: absolute;
-  top: -20px;
+  top: -8px;
   left: 30%;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+}
+
+.pulpi {
+  max-height: 150px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .close {
@@ -250,6 +263,17 @@
   color: #aaa;
   cursor: pointer;
 }
+
+.close-preview {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 50px;
+  color: darkred;
+  cursor: pointer;
+}
+
+
 
 .close:hover {
   color: #333;
@@ -270,6 +294,7 @@ body {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 
 .modal-content-preview {
   background-color: #fefefe;

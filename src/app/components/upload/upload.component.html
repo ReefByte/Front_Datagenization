@@ -18,7 +18,7 @@
     <span class="close" (click)="closeModalPulpi()">&times;</span>
     <h2 style="color: #979BC4;">¡Hola, soy pulpi!</h2>
     <p> Me vas a poder ver en las distintas pantallas y voy a ser una guía para la funcionalidad de cada pantalla.</p>
-    <p> En esta pantalla se van a subir los datasets que se desean homogenizar </p>
+    <p> En esta pantalla podrás subir los datasets que se desean homogenizar </p>
     <div class="speech-arrow"></div>
   </div>
 </div>
@@ -28,7 +28,8 @@
     <div class="upload-container">
       <div class="image-container">
         <div class="header">
-          <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+          <img *ngIf="!pulpiHasMessage" src="../../../assets/Pulpi_message_gif.gif" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+          <img *ngIf="pulpiHasMessage" src="../../../assets/Pulpi_message_pending_gif.gif" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
           <img src="assets/Logo.png" alt="Logo" class="logo">
         </div>
         <img src="assets/upload.png" alt="Upload" class="img">
