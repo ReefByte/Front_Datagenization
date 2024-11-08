@@ -12,6 +12,9 @@ import { PrevisualizacionDespuesComponent } from './components/previsualizacion-
 import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
 import { RecomendacionesRealizadasComponent } from './components/recomendaciones-realizadas/recomendaciones-realizadas.component';
 import { DescargarDatasetComponent } from './components/descargar-dataset/descargar-dataset.component';
+import {HttpClientModule} from "@angular/common/http";
+import { ColumnGroupingComponent } from './components/column-grouping/column-grouping.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -25,8 +28,9 @@ import { DescargarDatasetComponent } from './components/descargar-dataset/descar
     RecomendacionesComponent,
     RecomendacionesRealizadasComponent,
     DescargarDatasetComponent,
+    ColumnGroupingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

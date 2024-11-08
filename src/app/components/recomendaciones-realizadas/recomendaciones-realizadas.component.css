@@ -1,83 +1,104 @@
-.thank-you-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.container {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  height: 97vh;
+  overflow: hidden; 
+  position: relative; /* Para contener elementos posicionados si es necesario */
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Centra el logo horizontalmente */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.titulo2 {
+  width: 300px;
+  /* Eliminados margin y posición absoluta */
+}
+
+.message-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra verticalmente */
+  position: relative;
+  margin-top: 50px;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #f1f1f1;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px; /* Espacio entre la burbuja y Pulpi */
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #f1f1f1;
+}
+
+.logo {
+  width: 150px;
+  /* Eliminados márgenes y posición absoluta */
+}
+
+.bottom-right-button {
+  background-color: #2F5F98;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 75px;
+  right: 65px;
+  z-index: 1001;
+  font-size: 18px;
+}
+
+.bottom-right-button:hover {
+  background-color: #2F5F98;
+}
+
+.container-color {
+  height: 50px;
+  background-color: #2F5F98;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+/* Opcional: Responsividad para pantallas pequeñas */
+@media (max-width: 600px) {
+  .titulo2 {
+    width: 200px;
   }
-  
-  .message-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    margin-top: 50px;
-  }
-  
-  .octopus-img {
-    width: 150px;
-  }
-  
+
   .speech-bubble {
-    position: relative;
-    background: #f1f1f1;
-    border-radius: 20px;
-    padding: 20px;
-    max-width: 400px;
-    text-align: center;
-    font-size: 18px;
-    margin-top: -50px; /* Adjusts the position of the bubble */
-  }
-  
-  .speech-bubble:after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50px;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-top-color: #f1f1f1;
-    border-bottom: 0;
-    margin-left: -10px;
-    margin-bottom: -20px;
-  }
-  
-  .logo-section {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  
-  .logo-img {
-    width: 150px;
-  }
-  
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .back-btn,
-  .continue-btn {
-    padding: 10px 20px;
+    max-width: 300px;
     font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
   }
-  
-  .back-btn {
-    background-color: #5a6268;
-    color: white;
+
+  .logo {
+    width: 120px;
   }
-  
-  .continue-btn {
-    background-color: #007bff;
-    color: white;
-  }
-  
+}

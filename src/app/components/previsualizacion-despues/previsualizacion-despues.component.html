@@ -1,54 +1,44 @@
 <div class="container">
-    <div class="header">
-        <p class="titulo3">Previsualización de resultados </p>
-        <img src="assets/Titulo2.png" alt="Titulo" class="titulo2">
-
+  <div class="header">
+    <img *ngIf="!pulpiHasMessage" src="../../../assets/Pulpi_message_gif.gif" alt="Pulpo" class="pulpi"
+         (click)="openModalPulpi()">
+    <img *ngIf="pulpiHasMessage" src="../../../assets/Pulpi_message_pending_gif.gif" alt="Pulpo" class="pulpi"
+         (click)="openModalPulpi()">
+    <img src="assets/Logo.png" alt="Logo" class="logo">
+  </div>
+  <p class="titulo3">Previsualización de resultados</p>
+  <div class="columns-section">
+    <div class="columns-dataset">
+      <img *ngIf="isLoading" src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
+      <table *ngIf="!isLoading" class="dynamic-table">
+        <thead>
+        <tr>
+          <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-      <div class="columns-section">
-        <div class="columns-dataset">
+  </div>
 
-          <table>
-            <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Género</th>
-              <th>Edad</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Paula Andrea</td>
-              <td>Javier Felipe</td>
-              <td>William Daniel</td>
-              <td>Juan Felipe</td>
-            </tr>
-            <tr>
-              <td>Peñuela Barrera</td>
-              <td>Santana Diaz</td>
-              <td>Martinez Oviedo</td>
-              <td>Arias Castillo</td>
-            </tr>
-            <tr>
-              <td>F</td>
-              <td>M</td>
-              <td>M</td>
-              <td>M</td>
-            </tr>
-            <tr>
-              <td>21</td>
-              <td>21</td>
-              <td>21</td>
-              <td>22</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
-  <div class="container-color"></div>
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModalPulpi()"></div>
+
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModalPulpi()">&times;</span>
+      <h2 class="modal-title" style="color: #979BC4;">Mira el resultado de tu proceso</h2>
+      <p>Aquí tengo una visualización del resultado de tu proceso. Para cambiar algo que no veas del todo bien usa el botón <strong>Atrás</strong> y vuelve a seleccionar tus parámetros de homogenización</p>
+      <div class="speech-arrow"></div>
+    </div>
+  </div>
+  <div class="continue-button">
+    <button class="bottom-right-button" (click)="navigateToGrouping()">Atrás</button>
+    <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
+  </div>
+
 </div>
-
-
-
-  
+<div class="container-color"></div>
