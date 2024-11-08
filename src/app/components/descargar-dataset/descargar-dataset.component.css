@@ -1,17 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 .container {
   padding: 20px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 
 .header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
+.pulpi img{
+  max-width: 30vh;
+}
+
+.pulpi p{
+  text-align: center;
+  font-size: 20px;
+}
+
+.pulpi h2{
+  color: #979BC4;
+  text-align: center;
+}
+
+.pulpi {
+  left: 5vh;
+  width: 30vh;
+  z-index: 1000;
+  top: 23vh;
+  position: fixed;
+}
 
 h1 {
   color: #003366;
@@ -67,10 +89,15 @@ h1 {
   margin-left: 10px;
 }
 
+.footer p{
+  text-align: left;
+  font-size: 23px;
+}
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly ;
+  gap: 70vh;
   align-items: center;
   width: 100%;
 
@@ -112,10 +139,10 @@ p {
 
 .titulo3{
   font-family: 'Ubuntu', sans-serif;
-  font-weight: bold; 
-  font-size: 35px; 
-  color: #2F5F98; 
-  margin-top: 10px; 
+  font-weight: bold;
+  font-size: 35px;
+  color: #2F5F98;
+  margin-top: 10px;
 }
 
 .titulo2 {
@@ -124,5 +151,6 @@ p {
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
 }
+

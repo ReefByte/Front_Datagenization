@@ -1,21 +1,25 @@
 <div class="container">
   <div class="header">
-    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+    <img *ngIf="!pulpiHasMessage" src="../../../assets/Pulpi_message_gif.gif" alt="Pulpo" class="pulpi"
+         (click)="openModalPulpi()">
+    <img *ngIf="pulpiHasMessage" src="../../../assets/Pulpi_message_pending_gif.gif" alt="Pulpo" class="pulpi"
+         (click)="openModalPulpi()">
     <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
   <p class="titulo3">Previsualización de resultados</p>
   <div class="columns-section">
     <div class="columns-dataset">
-      <table class="dynamic-table">
+      <img *ngIf="isLoading" src="assets/Datagenization.gif" alt="Loading GIF" class="loading-gif">
+      <table *ngIf="!isLoading" class="dynamic-table">
         <thead>
-          <tr>
-            <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
-          </tr>
+        <tr>
+          <th *ngFor="let key of data[0] | keyvalue">{{ key.key }}</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of data">
-            <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
-          </tr>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -26,12 +30,15 @@
   <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
-      <h2 class="modal-title" style="color: #979BC4;" >¡Hola, soy pulpi!</h2>
-      <p>En esta pantalla se va a mostrar con qué columnas queda el dataset resultado con ejemplos en cada una.</p>
+      <h2 class="modal-title" style="color: #979BC4;">Mira el resultado de tu proceso</h2>
+      <p>Aquí tengo una visualización del resultado de tu proceso. Para cambiar algo que no veas del todo bien usa el botón <strong>Atrás</strong> y vuelve a seleccionar tus parámetros de homogenización</p>
       <div class="speech-arrow"></div>
     </div>
   </div>
+  <div class="continue-button">
+    <button class="bottom-right-button" (click)="navigateToGrouping()">Atrás</button>
+    <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
+  </div>
 
-  <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
 </div>
 <div class="container-color"></div>

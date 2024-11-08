@@ -6,7 +6,7 @@
 </div>
 <div class="container">
   <div class="header">
-    <img src="../../../assets/pulpo.jpg" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
+    <img src="../../../assets/Pulpi_message_gif.gif" alt="Pulpo" class="pulpi" (click)="openModalPulpi()">
     <img src="assets/Logo.png" alt="Logo" class="logo">
   </div>
   <div class="columns-grouping-section">
@@ -66,8 +66,8 @@
   <div *ngIf="isModalOpen" class="modal-pulpi">
     <div class="modal-content-pulpi">
       <span class="close" (click)="closeModalPulpi()">&times;</span>
-      <h2 style="color: #979BC4;">¡Hola, soy Pulpi!</h2>
-      <p>En esta pantalla te vamos a presentar algunas recomendaciones de columnas para homogenizar. Si quieres aceptar las recomendaciones, haz clic en "Aceptar" y se agregarán.</p>
+      <h2 style="color: #979BC4;">¡Mira esto que encontré!</h2>
+      <p>Aquí te tengo algunas recomendaciones de columnas para homogenizar. Si quieres aceptar las recomendaciones, haz clic en <strong>Aceptar</strong> y se agregarán a tus opciones de homogenización. Si cierras esta ventana de recomendaciones no te preocupes, puedes volver a ella conmigo.</p>
       <table *ngIf="recommendationsData" class="recommendation-table">
         <thead>
         <tr>

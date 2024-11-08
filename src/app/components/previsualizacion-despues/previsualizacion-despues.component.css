@@ -29,8 +29,10 @@
 .pulpi {
   width: 150px;
   margin-bottom: 10px;
-  cursor: pointer; 
+  cursor: pointer;
+  z-index: 1000;
 }
+
 
 .titulo3 {
   font-weight: bold;
@@ -104,8 +106,8 @@
 
 .modal {
   position: absolute;
-  top: 135px; 
-  left: 0%; 
+  top: 135px;
+  left: 0%;
   width: 250px;
   background-color: #fff;
   border-radius: 10px;
@@ -123,13 +125,13 @@
 
 .speech-arrow {
   position: absolute;
-  top: -8px; 
+  top: -8px;
   left: 30%;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
 }
 
 .close {
@@ -146,11 +148,15 @@
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
+}
+.loading-gif {
+  width: 30%;
+  height: auto;
 }
 
 .container-color {
-  height: 50px;
+  height: 5px;
   background-color: #2F5F98;
   width: 100%;
   position: fixed;
@@ -167,7 +173,7 @@ body {
   overflow: hidden;
   position: relative;
   min-height: 100%;
-  padding-bottom: 0px; 
+  padding-bottom: 0px;
 }
 
 .columns-section {
@@ -175,7 +181,7 @@ body {
   margin: 20px 0;
   overflow-x: auto;
   overflow-y: auto;
-  max-height: calc(100vh - 250px); 
+  max-height: calc(100vh - 250px);
 }
 
 .dynamic-table {
@@ -193,9 +199,16 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  position: fixed;
   bottom: 65px;
-  right: 25px; 
+  right: 65px;
+  z-index: 800;
   font-size: 18px;
-  z-index: 1001;
+}
+
+.continue-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 70vw;
+  margin-bottom: 20px;
 }

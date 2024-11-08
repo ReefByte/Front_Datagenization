@@ -25,6 +25,7 @@
   width: 150px;
   margin-bottom: 70px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .img {
@@ -192,6 +193,7 @@ li button:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 
@@ -210,7 +212,7 @@ li button:hover {
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
 }
 
 .close {

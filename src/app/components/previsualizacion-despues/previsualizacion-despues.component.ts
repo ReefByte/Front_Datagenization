@@ -11,6 +11,8 @@ export class PrevisualizacionDespuesComponent implements OnInit {
   sessionId: string | null = '';
   data: any[] = [];
   isModalOpen = false;
+  isLoading = true;
+  pulpiHasMessage = true;
   constructor(
     private router: Router,
     private previsualizacionDespuesService: PrevisualizacionDespuesService
@@ -26,6 +28,7 @@ export class PrevisualizacionDespuesComponent implements OnInit {
           (response) => {
             console.log(response);
             this.data = response;
+            this.isLoading = false;
           },
           (error) => {
             console.error('Error fetching CSV columns:', error);
@@ -38,7 +41,12 @@ export class PrevisualizacionDespuesComponent implements OnInit {
     this.router.navigate(['/descargar']);
   }
 
+  navigateToGrouping() {
+    this.router.navigate(['/grouping']);
+  }
+
   openModalPulpi() {
+    this.pulpiHasMessage = false;
     this.isModalOpen = true;
   }
 

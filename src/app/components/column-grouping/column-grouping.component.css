@@ -201,13 +201,16 @@ table tbody td {
   width: 80%;
   max-height: 80%;
   overflow: auto;
+  z-index: 1000;
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 50px;
+  color: darkred;
+  cursor: pointer;
 }
 
 .column-name-input {
@@ -223,6 +226,7 @@ table tbody td {
 .recommendation-table {
   width: 100%;
   border-collapse: collapse;
+  z-index: 1000;
 }
 
 .recommendation-table th, .recommendation-table td {

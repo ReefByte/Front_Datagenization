@@ -21,6 +21,7 @@ export class ColumnSelectionComponent implements OnInit{
   csvHeaders: string[] = [];
   csvContentLines: string[] = [];
   lastLine: number = 11;
+  pulpiHasMessage = true;
 
   constructor(
     private columnSelectionService: ColumnSelectionService,
@@ -108,6 +109,7 @@ export class ColumnSelectionComponent implements OnInit{
   }
 
   openModalPulpi() {
+    this.pulpiHasMessage = false;
     this.isModalOpen = true;
   }
 
