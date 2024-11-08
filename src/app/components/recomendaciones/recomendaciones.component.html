@@ -9,34 +9,39 @@
     <div class="left-section">
       <h2>Recomendaciones</h2>
       <p>Te quiero realizar algunas recomendaciones para tus datos.</p>
-      <img src="assets/pulpo.jpg" alt="Pulpo" class="logo" (click)="openModalPulpi()">
-      <p>Puedes aceptar, ignorar o simplemente continuar al siguiente paso</p>
+      <img src="assets/Pulpi_gif.gif" alt="Pulpo" class="logo" (click)="openModalPulpi()">
+      <p>¡Recuerda tener esto en cuenta al momento en que vayas a usar tus datos!</p>
     </div>
 
     <div class="right-section">
       <div class="recommendation-card">
-          <h3>Datos Nulos</h3>
-          <p class="description">Los datos nulos pueden significar información incompleta y ser un problema al momento de usar tus datos.</p>
-          <p>Hay datos nulos en algunas columnas: </p>
-          <div class="table-container">
-              <table>
-                  <thead>
-                      <tr>
-                          <th>Columnas</th>
-                          <th>Cantidad</th>
-                          <th>Outliers</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let entry of getNullsInfoEntries()">
-                          <td>{{ entry[0] }}</td>
-                          <td>{{ entry[1] }}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
+        <h3>Mejoras sobre la calidad de los datos</h3>
+        <p class="description">Aspectos como los datos nulos o los outliers con los que cuenta el dataset pueden significar información incompleta o inadecuada. Esto se puede convertir en un problema al momento de
+          usar tus datos.</p>
+        <p>Esto es lo que encontré: </p>
+        <div class="table-container">
+          <table>
+            <thead>
+            <tr>
+              <th>Columnas</th>
+              <th>Cantidad Nulos</th>
+              <th>Outliers Encontrados</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let entry of getNullsInfoEntries()">
+              <td>{{ entry[0] }}</td>
+              <td>{{ entry[1] }}</td>
+              <td>
+                <img *ngIf="isBase64Image(entry[2])" [src]="getImageSrc(entry[2])" alt="Outliers"/>
+                <span *ngIf="!isBase64Image(entry[2])">No encontrados o no revisados por el tipo de dato</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-  </div>
+    </div>
 
   </div>
   <div *ngIf="isModalOpen" class="modal">
@@ -46,6 +51,7 @@
       <p>En esta pantalla se van a mostrar </p>
     </div>
   </div>
-  <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
-  <div class="container-color"></div>
+  <div class="button-container">
+    <button class="bottom-right-button" (click)="navigateToCarga()">Siguiente</button>
+  </div>
 </div>
