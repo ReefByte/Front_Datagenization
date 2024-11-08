@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 export class ColumnSelectionComponent implements OnInit{
   session_id: string | null = '';
   isModalOpen = false;
-  isLoadingPreview = false;
-  isLoadingColumns = false;
+  isLoadingPreview = true;
   currentFileName :string = ""
   isPreviewOpen = false;
   columns: { [key: string]: string[] } = {};
@@ -30,12 +29,10 @@ export class ColumnSelectionComponent implements OnInit{
 
 
   ngOnInit():void{
-    this.isLoadingColumns = false;
     this.session_id = sessionStorage.getItem('session_id')
     console.log(this.session_id)
     if(this.session_id){
       this.getColumns()
-      this.isLoadingColumns = false;
     }
   }
 
@@ -45,6 +42,7 @@ export class ColumnSelectionComponent implements OnInit{
         (response: any) => {
           this.columns = response;
           console.log('Datos guardados exitosamente ', this.columns);
+          this.isLoadingPreview = false;
         },
         (error: any) => {
           console.error('Error al obtener datos: ', error);
