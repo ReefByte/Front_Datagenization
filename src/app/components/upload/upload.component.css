@@ -200,6 +200,7 @@ li button:hover {
   color: #333;
   position: relative;
   border-radius: 10px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .speech-arrow {
@@ -246,3 +247,4 @@ body {
   width: 5%;
   height: 5%;
 }
+

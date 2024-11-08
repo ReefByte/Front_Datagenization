@@ -34,6 +34,10 @@
       }
     }
 
+    truncateFileName(fileName: string): string {
+      return fileName.length > 30 ? fileName.slice(0, 30) + '...' : fileName;
+    }
+
     getColumns() {
       if (this.session_id) {
         this.columnGroupingService.getColumns(this.session_id).subscribe(
