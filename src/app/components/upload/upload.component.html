@@ -1,3 +1,23 @@
+<div *ngIf="showDataConsentModal" class="modal">
+  <div class="modal-content">
+    <h2 style="color: #979BC4;">Permiso para el Uso de Datos</h2>
+    <p>
+      Al utilizar esta aplicación, estás dando tu consentimiento para que 
+      procesemos y almacenemos los archivos que subas con el fin de homogenizar 
+      los datasets. Tus datos no serán compartidos con terceros y serán utilizados 
+      únicamente para los fines de este servicio y serán eliminados cuando se termine el proceso.
+    </p>
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox" [(ngModel)]="isDataConsentGiven">
+        Acepto los términos y condiciones sobre el uso de mis datos.
+      </label>
+    </div>
+    <div class="modal-actions">
+      <button (click)="closeDataConsentModal()" [disabled]="!isDataConsentGiven">Aceptar</button>
+    </div>
+  </div>
+</div>
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
     <p>Debes seleccionar archivos para poder continuar.</p>
