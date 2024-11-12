@@ -1,9 +1,7 @@
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UploadService } from '../../service/upload.service';
 import { v4 as uuidv4 } from 'uuid';
-
 
 @Component({
   selector: 'app-upload',
@@ -22,12 +20,16 @@ export class UploadComponent implements OnInit {
   isModalOpen = false;
   isLoading = false;
   pulpiHasMessage = true;
+  showDataConsentModal: boolean = true; // Modal de consentimiento de datos
+  isDataConsentGiven: boolean = false;
 
   ngOnInit(): void {
     this.session_id = uuidv4();
-    sessionStorage.setItem('session_id',this.session_id);
+    sessionStorage.setItem('session_id', this.session_id);
     console.log(this.session_id);
     sessionStorage.setItem('session_id', this.session_id);
+
+    this.showDataConsentModal = true;
   }
 
   openFileDialog() {
@@ -36,9 +38,11 @@ export class UploadComponent implements OnInit {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    const files = input.files
+    const files = input.files;
     if (files && files.length > 0) {
-      this.selectedFileNames.push(...Array.from(files).map(file => file.name));
+      this.selectedFileNames.push(
+        ...Array.from(files).map((file) => file.name)
+      );
       this.selectedFiles.push(...Array.from(files));
       this.buttonLabel = 'Seleccionar más archivos';
     }
@@ -49,19 +53,27 @@ export class UploadComponent implements OnInit {
     if (this.selectedFiles.length == 0) {
       this.showModal = true;
       this.isLoading = false;
-    }
-    else{
+    } else {
       // @ts-ignore
-      this.uploadService.procesar(this.selectedFiles, sessionStorage.getItem('session_id')).subscribe(
-        (respuesta: any) => {
-          console.log('Archivo subido con éxito', respuesta);
-          this.router.navigate(['/columns'])
-          this.isLoading = true;
-        },
-        (error: any) => {
-          this.isLoading = true;
-          console.error('Error al subir archivo', error);
-        })
+      this.uploadService
+        .procesar(this.selectedFiles, sessionStorage.getItem('session_id') ?? '')
+        .subscribe(
+          (respuesta: any) => {
+            console.log('Archivo subido con éxito', respuesta);
+            this.router.navigate(['/columns']);
+            this.isLoading = true;
+          },
+          (error: any) => {
+            this.isLoading = true;
+            console.error('Error al subir archivo', error);
+          }
+        );
+    }
+  }
+  // Cerrar el modal de datos
+  closeDataConsentModal() {
+    if (this.isDataConsentGiven) {
+      this.showDataConsentModal = false;
     }
   }
   closeModal() {
@@ -80,7 +92,6 @@ export class UploadComponent implements OnInit {
     this.pulpiHasMessage = false;
     this.isModalOpen = true;
   }
-
 
   closeModalPulpi() {
     this.isModalOpen = false;
@@ -118,7 +129,9 @@ export class UploadComponent implements OnInit {
       console.log('Archivo seleccionado:', file.name);
     }
     if (files && files.length > 0) {
-      this.selectedFileNames.push(...Array.from(files).map(file => file.name));
+      this.selectedFileNames.push(
+        ...Array.from(files).map((file) => file.name)
+      );
       this.selectedFiles.push(...Array.from(files));
       this.buttonLabel = 'Seleccionar más archivos';
     }

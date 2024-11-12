@@ -1,24 +1,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 .container {
-  padding: 20px;
+  height: 100vh;
+}
+
+img{
+  width: 100%;
+  height: auto;
 }
 
 .header {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .titulo2 {
-  height: 20%; 
-  width: 20%; 
+  height: 20%;
+  width: 20%;
 }
 
 .header-logo {
-  width: 150px; 
+  width: 150px;
 }
 
 p{
@@ -30,9 +35,9 @@ p{
 }
 
 .left-section {
-  width: 40%; 
+  height: 90vh;
   text-align: center;
-  font-family: 'Ubuntu', sans-serif;  
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .left-section h2 {
@@ -50,7 +55,8 @@ p{
 }
 
 .right-section {
-  width: 55%;
+  width: 80%;
+  height: 90vh;
 }
 
 
@@ -59,14 +65,14 @@ p{
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  max-height: 220px;
-  overflow-y: auto; 
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 .table-container {
-  max-height: 180px; 
-  overflow-y: auto; 
-  border: 1px solid #ddd; 
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid #ddd;
   border-radius: 5px;
 }
 .recommendation-card h3 {
@@ -78,18 +84,18 @@ p{
 
 
 table {
-  width: 100%; 
-  border-collapse: collapse; 
+  height: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-  border: 1px solid #ddd; 
-  padding: 8px; 
-  text-align: left; 
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 th {
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -140,12 +146,12 @@ th {
 
 .titulo3{
   font-family: 'Ubuntu', sans-serif;
-  font-weight: bold; 
-  font-size: 35px; 
-  color: #2F5F98; 
-  margin-top: 10px; 
+  font-weight: bold;
+  font-size: 35px;
+  color: #2F5F98;
+  margin-top: 10px;
 }
-  
+
 .titulo2 {
   height: 20%;
   width: 20%;
@@ -157,17 +163,18 @@ th {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: fixed;
-    bottom: 65px;
-    right: 65px;
     z-index: 1000;
     font-size: 18px;
   }
+ .button-container{
+   display: flex;
+  flex-direction: row-reverse;
+ }
   .bottom-right-button:hover {
     background-color: #2F5F98;
   }
 
-  
+
   .modal {
     display: block; /* Mostrado por defecto, se controla con Angular */
     position: fixed;
@@ -179,7 +186,7 @@ th {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
   }
-  
+
   .modal-content {
     background-color: white;
     margin: 15% auto;
@@ -187,19 +194,19 @@ th {
     border: 1px solid #888;
     width: 80%;
   }
-  
+
   .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
-  
+
   .pulpi {
     width: 150px;
 
   }
 
   body {
-    font-family: 'Ubuntu', sans-serif; 
+    font-family: 'Ubuntu', sans-serif;
   }

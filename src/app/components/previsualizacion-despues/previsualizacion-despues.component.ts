@@ -21,7 +21,6 @@ export class PrevisualizacionDespuesComponent implements OnInit {
 
   ngOnInit() {
     this.sessionId = sessionStorage.getItem('session_id');
-
     if (this.sessionId != null) {
       this.previsualizacionDespuesService
         .getCsvColumnsAfter(this.sessionId)
@@ -38,23 +37,8 @@ export class PrevisualizacionDespuesComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    if (this.sessionId != null) {
-      this.PrevisualizacionDespuesService.getCsvColumnsAfter(
-        this.sessionId
-      ).subscribe(
-        (response) => {
-          console.log(response);
-          this.data = response;
-        },
-        (error) => {
-          console.error('Error fetching CSV columns:', error);
-        }
-      );
-    }
-  }
   navigateToCarga() {
-    this.router.navigate(['/descargar']);
+    this.router.navigate(['/recomendaciones']);
   }
 
   navigateToGrouping() {
